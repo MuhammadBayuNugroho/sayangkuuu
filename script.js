@@ -201,15 +201,14 @@ class FloatingPetalsEngine {
 }
 
 // ==========================================================================
-// 4. CONFETTI & SPARKS ENGINE
+// 4. BOTANICAL FLIGHT ENGINE (DANDELION SEEDS & BLOOMING PETALS)
 // ==========================================================================
-class ConfettiEngine {
+class BotanicalFlightEngine {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.colors = ['#F7CAD0', '#F29BB0', '#D86B84', '#FFFFFF', '#F5E6BD'];
         this.isAnimating = false;
         this.resize();
         window.addEventListener('resize', () => this.resize());
@@ -220,16 +219,19 @@ class ConfettiEngine {
         this.height = this.canvas.height = window.innerHeight;
     }
 
+    // Classic Confetti Burst
     burst(x = window.innerWidth / 2, y = window.innerHeight / 2, count = 75) {
+        const colors = ['#F7CAD0', '#F29BB0', '#D86B84', '#FFFFFF', '#F5E6BD'];
         for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 9 + 3;
+            const velocity = Math.random() * 8 + 3;
             this.particles.push({
+                kind: 'confetti',
                 x, y,
                 vx: Math.cos(angle) * velocity,
                 vy: Math.sin(angle) * velocity - Math.random() * 3,
                 size: Math.random() * 7 + 4,
-                color: this.colors[Math.floor(Math.random() * this.colors.length)],
+                color: colors[Math.floor(Math.random() * colors.length)],
                 opacity: 1,
                 rotation: Math.random() * 360,
                 rotationSpeed: (Math.random() - 0.5) * 10,
@@ -243,31 +245,318 @@ class ConfettiEngine {
         }
     }
 
+    // SPECIAL: Flying Dandelion Seeds, Fluttering Petals & Blooming Blossoms!
+    burstDandelionAndPetals(x = window.innerWidth / 2, y = window.innerHeight / 2) {
+        const petalColors = ['#FFF0F5', '#FAD2E1', '#F7CAD0', '#F29BB0', '#FCE1E7', '#FEE2E8'];
+
+        const spawnBotanicalWave = (waveX, waveY, seedCount, petalCount, blossomCount, sparkleCount, speedFactor = 1) => {
+            // 1. Botanical Dandelion Parachute Seeds (with stems & feathery bristles)
+            for (let i = 0; i < seedCount; i++) {
+                const angle = -Math.PI * 0.92 + Math.random() * Math.PI * 0.84; // Upward wind fan
+                const speed = (Math.random() * 6.5 + 2.5) * speedFactor;
+                this.particles.push({
+                    kind: 'dandelion',
+                    x: waveX + (Math.random() - 0.5) * 50,
+                    y: waveY + (Math.random() - 0.5) * 45,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1.8,
+                    size: Math.random() * 12 + 16,
+                    opacity: 1,
+                    rotation: Math.random() * 0.4 - 0.2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.04,
+                    swayPhase: Math.random() * Math.PI * 2,
+                    swaySpeed: Math.random() * 0.05 + 0.025,
+                    swayAmp: Math.random() * 1.8 + 0.8,
+                    drag: 0.985,
+                    upwardLift: Math.random() * 0.08 + 0.045
+                });
+            }
+
+            // 2. Blooming Flower Petals (fluttering and flipping in 3D)
+            for (let i = 0; i < petalCount; i++) {
+                const angle = -Math.PI * 0.96 + Math.random() * Math.PI * 0.92;
+                const speed = (Math.random() * 7.5 + 2.8) * speedFactor;
+                this.particles.push({
+                    kind: 'petal',
+                    x: waveX + (Math.random() - 0.5) * 40,
+                    y: waveY + (Math.random() - 0.5) * 40,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1.2,
+                    size: Math.random() * 9 + 8,
+                    color: petalColors[Math.floor(Math.random() * petalColors.length)],
+                    opacity: 1,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 5.5,
+                    flipAngle: Math.random() * Math.PI,
+                    flipSpeed: Math.random() * 0.08 + 0.04,
+                    drag: 0.97,
+                    gravity: -0.02
+                });
+            }
+
+            // 3. Miniature Blooming Blossom Flowers (expanding & blossoming as they fly)
+            for (let i = 0; i < blossomCount; i++) {
+                const angle = -Math.PI * 0.88 + Math.random() * Math.PI * 0.76;
+                const speed = (Math.random() * 5.5 + 2) * speedFactor;
+                this.particles.push({
+                    kind: 'blossom',
+                    x: waveX + (Math.random() - 0.5) * 35,
+                    y: waveY + (Math.random() - 0.5) * 35,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1.5,
+                    size: Math.random() * 7 + 10,
+                    scale: 0.35,
+                    bloomSpeed: Math.random() * 0.02 + 0.012,
+                    maxScale: Math.random() * 0.4 + 0.9,
+                    color: petalColors[Math.floor(Math.random() * petalColors.length)],
+                    opacity: 1,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.03,
+                    drag: 0.98,
+                    gravity: -0.035
+                });
+            }
+
+            // 4. Golden Fairy Sparkles & Stardust
+            for (let i = 0; i < sparkleCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = (Math.random() * 6 + 1.5) * speedFactor;
+                this.particles.push({
+                    kind: 'sparkle',
+                    x: waveX,
+                    y: waveY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 2,
+                    size: Math.random() * 5 + 3,
+                    color: '#E5C158',
+                    opacity: 1,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: 0.05,
+                    drag: 0.94
+                });
+            }
+
+            if (!this.isAnimating) {
+                this.isAnimating = true;
+                this.render();
+            }
+        };
+
+        // Primary Burst directly from dandelion head
+        spawnBotanicalWave(x, y, 55, 45, 20, 30, 1);
+
+        // Secondary Wind Wave (Updraft carrying petals higher across screen)
+        setTimeout(() => {
+            spawnBotanicalWave(x, y - 40, 30, 25, 12, 15, 0.85);
+        }, 220);
+
+        // Third Gentle Breeze (Floating petals and seeds reaching skyward)
+        setTimeout(() => {
+            spawnBotanicalWave(x + (Math.random() - 0.5) * 60, y - 80, 20, 20, 8, 10, 0.7);
+        }, 550);
+    }
+
+    drawDandelionSeed(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate(p.rotation);
+        this.ctx.globalAlpha = p.opacity;
+
+        // Seed Body (tiny brown droplet)
+        this.ctx.fillStyle = '#6E4D3E';
+        this.ctx.beginPath();
+        this.ctx.ellipse(0, p.size * 0.45, 1.4, 3.2, 0, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Slender stem
+        this.ctx.strokeStyle = 'rgba(160, 140, 130, 0.75)';
+        this.ctx.lineWidth = 0.9;
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, p.size * 0.35);
+        this.ctx.lineTo(0, -p.size * 0.1);
+        this.ctx.stroke();
+
+        // Fluffy Umbrella Rays (Parachute)
+        this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.92)';
+        this.ctx.lineWidth = 0.8;
+        const rays = 9;
+        const radius = p.size * 0.55;
+        for (let i = 0; i < rays; i++) {
+            const rayAngle = -Math.PI * 0.88 + (i / (rays - 1)) * Math.PI * 0.76;
+            const rx = Math.cos(rayAngle) * radius;
+            const ry = Math.sin(rayAngle) * radius * 0.55 - p.size * 0.1;
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, -p.size * 0.1);
+            this.ctx.lineTo(rx, ry);
+            this.ctx.stroke();
+
+            // Feathery tuft at ray tip
+            this.ctx.fillStyle = 'rgba(255, 245, 248, 0.9)';
+            this.ctx.beginPath();
+            this.ctx.arc(rx, ry, 1.3, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
+
+        this.ctx.restore();
+    }
+
+    drawPetalParticle(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate((p.rotation * Math.PI) / 180);
+        this.ctx.scale(Math.cos(p.flipAngle), 1);
+        this.ctx.globalAlpha = p.opacity;
+
+        // Organic curved flower petal shape
+        this.ctx.fillStyle = p.color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, -p.size);
+        this.ctx.bezierCurveTo(p.size * 0.8, -p.size * 0.5, p.size * 0.85, p.size * 0.6, 0, p.size);
+        this.ctx.bezierCurveTo(-p.size * 0.85, p.size * 0.6, -p.size * 0.8, -p.size * 0.5, 0, -p.size);
+        this.ctx.fill();
+
+        this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        this.ctx.lineWidth = 0.6;
+        this.ctx.stroke();
+        this.ctx.restore();
+    }
+
+    drawBlossomParticle(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate(p.rotation);
+        this.ctx.scale(p.scale, p.scale);
+        this.ctx.globalAlpha = p.opacity;
+
+        // 5 Rounded Petals
+        const petals = 5;
+        this.ctx.fillStyle = p.color;
+        for (let i = 0; i < petals; i++) {
+            this.ctx.save();
+            this.ctx.rotate((i * Math.PI * 2) / petals);
+            this.ctx.beginPath();
+            this.ctx.ellipse(0, -p.size * 0.5, p.size * 0.38, p.size * 0.55, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.restore();
+        }
+
+        // Blossom Pistil (Golden Center)
+        this.ctx.fillStyle = '#FCE082';
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, p.size * 0.22, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        this.ctx.restore();
+    }
+
+    drawSparkleParticle(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate(p.rotation);
+        this.ctx.globalAlpha = p.opacity;
+        this.ctx.fillStyle = p.color;
+
+        // 4-point star
+        this.ctx.beginPath();
+        for (let i = 0; i < 4; i++) {
+            this.ctx.lineTo(0, -p.size);
+            this.ctx.lineTo(p.size * 0.25, -p.size * 0.25);
+            this.ctx.rotate(Math.PI / 2);
+        }
+        this.ctx.fill();
+        this.ctx.restore();
+    }
+
     render() {
         this.ctx.clearRect(0, 0, this.width, this.height);
 
         for (let i = this.particles.length - 1; i >= 0; i--) {
             const p = this.particles[i];
-            p.vx *= p.drag;
-            p.vy *= p.drag;
-            p.vy += p.gravity;
-            p.x += p.vx;
-            p.y += p.vy;
-            p.rotation += p.rotationSpeed;
-            p.opacity -= 0.01;
 
-            if (p.opacity <= 0 || p.y > this.height) {
-                this.particles.splice(i, 1);
-                continue;
+            if (p.kind === 'dandelion') {
+                p.vx *= p.drag;
+                p.vy *= p.drag;
+                p.vy -= p.upwardLift; // Floats upward
+                p.swayPhase += p.swaySpeed;
+                p.x += p.vx + Math.sin(p.swayPhase) * p.swayAmp;
+                p.y += p.vy;
+                p.rotation += p.rotationSpeed;
+                p.opacity -= 0.0042; // Long graceful flight
+
+                if (p.opacity <= 0 || p.y < -50 || p.x < -40 || p.x > this.width + 40) {
+                    this.particles.splice(i, 1);
+                    continue;
+                }
+                this.drawDandelionSeed(p);
+
+            } else if (p.kind === 'petal') {
+                p.vx *= p.drag;
+                p.vy *= p.drag;
+                p.vy += p.gravity;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.rotation += p.rotationSpeed;
+                p.flipAngle += p.flipSpeed;
+                p.opacity -= 0.0055;
+
+                if (p.opacity <= 0 || p.y < -50 || p.y > this.height + 40) {
+                    this.particles.splice(i, 1);
+                    continue;
+                }
+                this.drawPetalParticle(p);
+
+            } else if (p.kind === 'blossom') {
+                p.vx *= p.drag;
+                p.vy *= p.drag;
+                p.vy += p.gravity;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.rotation += p.rotationSpeed;
+                if (p.scale < p.maxScale) p.scale += p.bloomSpeed; // Blossom grows/blooms in air!
+                p.opacity -= 0.005;
+
+                if (p.opacity <= 0 || p.y < -50) {
+                    this.particles.splice(i, 1);
+                    continue;
+                }
+                this.drawBlossomParticle(p);
+
+            } else if (p.kind === 'sparkle') {
+                p.vx *= p.drag;
+                p.vy *= p.drag;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.opacity -= 0.015;
+
+                if (p.opacity <= 0) {
+                    this.particles.splice(i, 1);
+                    continue;
+                }
+                this.drawSparkleParticle(p);
+
+            } else {
+                // Classic confetti
+                p.vx *= p.drag;
+                p.vy *= p.drag;
+                p.vy += p.gravity;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.rotation += p.rotationSpeed;
+                p.opacity -= 0.01;
+
+                if (p.opacity <= 0 || p.y > this.height) {
+                    this.particles.splice(i, 1);
+                    continue;
+                }
+
+                this.ctx.save();
+                this.ctx.translate(p.x, p.y);
+                this.ctx.rotate((p.rotation * Math.PI) / 180);
+                this.ctx.fillStyle = p.color;
+                this.ctx.globalAlpha = p.opacity;
+                this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+                this.ctx.restore();
             }
-
-            this.ctx.save();
-            this.ctx.translate(p.x, p.y);
-            this.ctx.rotate((p.rotation * Math.PI) / 180);
-            this.ctx.fillStyle = p.color;
-            this.ctx.globalAlpha = p.opacity;
-            this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
-            this.ctx.restore();
         }
 
         if (this.particles.length > 0) {
@@ -285,7 +574,8 @@ class ConfettiEngine {
 document.addEventListener('DOMContentLoaded', () => {
 
     const petalsFX = new FloatingPetalsEngine('petals-canvas');
-    const confettiFX = new ConfettiEngine('confetti-canvas');
+    const botanicalFX = new BotanicalFlightEngine('confetti-canvas');
+    const confettiFX = botanicalFX; // Provides classic .burst() for other chapters
 
     // ----------------------------------------------------------------------
     // A. Bind Config Data
@@ -524,21 +814,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (micAnimId) cancelAnimationFrame(micAnimId);
 
-        // Animate floating seed auras drifting away
+        // 1. Dandelion Photo Glow & Bloom state
+        const dandelionImg = document.getElementById('dandelion-photo-img');
+        if (dandelionImg) dandelionImg.classList.add('is-blown');
+
+        // 2. Expand blooming floral rosette & radial floating petals in DOM
+        const bloomEffect = document.getElementById('blooming-flower-effect');
+        if (bloomEffect) {
+            bloomEffect.innerHTML = `
+                <div class="blooming-rosette"></div>
+                <div class="blooming-rosette ring-2"></div>
+            `;
+            // Add radial flying floral symbols
+            const flowerSymbols = ['🌸', '🌾', '🌷', '✨', '💐', '🌸', '🌾', '💖'];
+            flowerSymbols.forEach((sym, idx) => {
+                const petalEl = document.createElement('span');
+                petalEl.className = 'blooming-floating-petal';
+                petalEl.textContent = sym;
+                const angle = (idx / flowerSymbols.length) * Math.PI * 2;
+                const dist = 70 + Math.random() * 50;
+                petalEl.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+                petalEl.style.setProperty('--ty', `${Math.sin(angle) * dist - 50}px`);
+                petalEl.style.setProperty('--rot', `${Math.random() * 180 - 90}deg`);
+                bloomEffect.appendChild(petalEl);
+            });
+        }
+
+        // 3. Animate existing floating seed auras
         const seedAuras = document.querySelectorAll('.seed-aura');
-        seedAuras.forEach((sa, i) => {
-            sa.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-            sa.style.transform = `translateY(-60px) scale(1.4)`;
+        seedAuras.forEach((sa) => {
+            sa.style.transition = 'all 1.4s cubic-bezier(0.16, 1, 0.3, 1)';
+            sa.style.transform = `translateY(-90px) scale(1.6)`;
             sa.style.opacity = '0';
         });
 
-        // Massive fairy dust & flower confetti explosion
-        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.42, 130);
+        // 4. Calculate dandelion position for realistic origin
+        const dCard = document.querySelector('.aesthetic-dandelion-card');
+        const rect = dCard ? dCard.getBoundingClientRect() : null;
+        const originX = rect ? (rect.left + rect.width / 2) : (window.innerWidth / 2);
+        const originY = rect ? (rect.top + rect.height * 0.42) : (window.innerHeight * 0.4);
+
+        // 5. Fire the Botanical Flight Engine (Dandelion Seeds + Blooming Petals + Blossoms)
+        if (botanicalFX) {
+            botanicalFX.burstDandelionAndPetals(originX, originY);
+        }
 
         setTimeout(() => {
             if (blowActionWrapper) blowActionWrapper.style.display = 'none';
             if (wishSuccessBox) wishSuccessBox.classList.remove('hidden');
-        }, 700);
+        }, 850);
     };
 
     if (btnTapBlow) {
