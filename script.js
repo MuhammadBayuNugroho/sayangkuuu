@@ -829,9 +829,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (micAnimId) cancelAnimationFrame(micAnimId);
 
-        // 1. Dandelion Photo Glow & Bloom state
-        const dandelionImg = document.getElementById('dandelion-photo-img');
-        if (dandelionImg) dandelionImg.classList.add('is-blown');
+        // 1. Transition dandelion viewport to blown state (fluffy seeds scatter, revealing bare stem)
+        const dandelionViewport = document.getElementById('dandelion-image-viewport');
+        if (dandelionViewport) dandelionViewport.classList.add('is-blown');
+
+        const dandelionPill = document.getElementById('dandelion-tag-pill');
+        if (dandelionPill) dandelionPill.textContent = "✨ Harapanmu telah mekar dan terbang ke langit ✨";
 
         // 2. Expand blooming floral rosette & radial floating petals in DOM
         const bloomEffect = document.getElementById('blooming-flower-effect');

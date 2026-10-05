@@ -714,18 +714,40 @@ body {
 }
 
 .dandelion-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.8s ease;
+    transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 2s ease, filter 1.6s ease;
+}
+
+.dandelion-blown-photo {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.04);
+    z-index: 2;
 }
 
 .dandelion-image-viewport:hover .dandelion-photo {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
-/* Blooming Flower Effect on Blow */
+/* When blown: the fluffy flower head dissolves as its seeds fly away, revealing the bare stem */
+.dandelion-image-viewport.is-blown .dandelion-photo:not(.dandelion-blown-photo) {
+    opacity: 0;
+    transform: scale(1.08) translateY(-10px);
+    filter: blur(4px) brightness(1.12);
+}
+
+.dandelion-image-viewport.is-blown .dandelion-blown-photo {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.06) saturate(1.1) drop-shadow(0 0 25px rgba(242, 155, 176, 0.5));
+}
+
+/* Blooming Floral Bloom Overlay on Blow */
 .blooming-flower-effect {
     position: absolute;
     inset: 0;
@@ -760,12 +782,6 @@ body {
     pointer-events: none;
     animation: petalFlyAway 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     filter: drop-shadow(0 3px 10px rgba(242, 155, 176, 0.6));
-}
-
-.dandelion-photo.is-blown {
-    filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 25px rgba(242, 155, 176, 0.5));
-    transform: scale(1.06);
-    transition: filter 1.2s ease, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes bloomBurst {
