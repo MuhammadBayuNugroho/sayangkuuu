@@ -683,9 +683,9 @@ body {
 }
 
 /* ==========================================================================
-   CHAPTER 5: THE 23RD CAKE & WISH (KOREAN AESTHETIC CAKE)
+   CHAPTER 5: THE DANDELION WISH (AESTHETIC DANDELION EXPERIENCE)
    ========================================================================== */
-.aesthetic-cake-card {
+.aesthetic-dandelion-card {
     position: relative;
     background: var(--bg-surface);
     border-radius: var(--radius-lg);
@@ -695,89 +695,69 @@ body {
     max-width: 400px;
     width: 100%;
     margin-bottom: 2rem;
+    transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
 }
 
-.cake-image-viewport {
+.aesthetic-dandelion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.dandelion-image-viewport {
     position: relative;
     width: 100%;
-    height: 340px;
+    height: 350px;
     border-radius: 20px;
     overflow: hidden;
-    background: #FDF1F4;
+    background: #FFF4F7;
     box-shadow: var(--shadow-soft);
 }
 
-.cake-photo {
+.dandelion-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transition: transform 0.8s ease;
 }
 
-/* Interactive Glowing Candle Flames overlaid on cake candles */
-.interactive-cake-flames {
+.dandelion-image-viewport:hover .dandelion-photo {
+    transform: scale(1.04);
+}
+
+/* Floating Dandelion Seed Auras */
+.interactive-dandelion-seeds {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
 
-.candle-flame-wrapper {
+.seed-aura {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 8px rgba(242, 155, 176, 0.6));
+    animation: floatSeed 3s infinite ease-in-out alternate;
 }
 
-/* Positioning flames atop Korean cake candles */
-.flame-pos-1 { top: 12%; left: 47%; }
-.flame-pos-2 { top: 14%; left: 40%; }
-.flame-pos-3 { top: 15%; left: 54%; }
+.seed-aura.a1 { top: 22%; left: 35%; animation-delay: 0s; }
+.seed-aura.a2 { top: 18%; right: 28%; animation-delay: 0.8s; font-size: 1.2rem; }
+.seed-aura.a3 { top: 35%; right: 20%; animation-delay: 1.6s; }
 
-.candle-flame {
-    width: 14px;
-    height: 22px;
-    background: radial-gradient(ellipse at bottom, #FFFB8F 0%, #FFA726 60%, #FF3D00 100%);
-    border-radius: 50% 50% 35% 35%;
-    box-shadow: 0 0 16px #FFA726, 0 0 28px #FFD54F;
-    animation: flameDance 1.2s infinite ease-in-out alternate;
-    transform-origin: bottom center;
-}
-
-.flame-glow {
-    position: absolute;
-    top: -10px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, transparent 70%);
-}
-
-.candle-flame-wrapper.extinguished .candle-flame,
-.candle-flame-wrapper.extinguished .flame-glow {
-    display: none;
-}
-
-.smoke-puff-cake {
-    position: absolute;
-    top: -15px;
-    width: 12px;
-    height: 12px;
-    background: rgba(180, 160, 165, 0.65);
-    border-radius: 50%;
-    filter: blur(3px);
-    animation: smokeFloatUp 2s forwards ease-out;
-}
-
-.cake-label-box {
+.dandelion-label-box {
     text-align: center;
-    margin-top: 0.85rem;
+    margin-top: 0.9rem;
 }
 
-.cake-tag-pill {
+.dandelion-tag-pill {
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     color: var(--pink-deep);
+}
+
+@keyframes floatSeed {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+    100% { transform: translateY(-14px) rotate(12deg); opacity: 1; }
 }
 
 /* Blow Action Controls */

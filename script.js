@@ -9,15 +9,15 @@
 // 1. CONFIGURATION PANEL (DATA UTAMA WEBSITE)
 // ==========================================================================
 const birthdayConfig = {
-    partnerName: "SAYANGKU",
-    partnerNickname: "SAYANGKU",
+    partnerName: "Sayangku",
+    partnerNickname: "Sayangku",
     yourName: "Mas Bayu",
     birthdayDate: "6 Oktober 2026",
-    
+
     // File Musik & Titik Awal Reff (Detik ke-44)
     musicSrc: "assets/music/Serta Mulia-Sal Priadi (Lyrics).mp3",
     reffStartTime: 44, // 0:44 detik
-    
+
     // Foto Utama (Hero)
     heroPhoto: "assets/photos/IMG-20260517-WA0007.jpg",
 
@@ -41,7 +41,7 @@ const birthdayConfig = {
         },
         {
             image: "assets/photos/photo-05.jpg",
-            caption: "Dan hari ini, merayakan senyum manismu di usia ke-23 ❤️"
+            caption: "Dan hari ini, merayakan senyum manismu ❤️"
         }
     ],
 
@@ -76,10 +76,10 @@ const birthdayConfig = {
 // ==========================================================================
 // 2. IMAGE FALLBACK HANDLER (GLOBAL)
 // ==========================================================================
-window.handleImageFallback = function(imgElement, type = 'general') {
+window.handleImageFallback = function (imgElement, type = 'general') {
     const title = type === 'hero' ? 'Happy 23rd Birthday' : (type === 'cake' ? 'Aesthetic Cake' : 'Sweet Memories');
     const subtitle = birthdayConfig.partnerNickname || 'Sayangku';
-    
+
     const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
         <defs>
@@ -102,7 +102,7 @@ window.handleImageFallback = function(imgElement, type = 'general') {
             <text x="300" y="440" font-size="34">🌸 💖 🌸</text>
         </g>
     </svg>`;
-    
+
     imgElement.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
     imgElement.onerror = null;
 };
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bgAudio.currentTime = birthdayConfig.reffStartTime; // 44 detik
             bgAudio.volume = 0;
             const playPromise = bgAudio.play();
-            
+
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     isPlaying = true;
@@ -500,9 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // H. Chapter 5: Korean Aesthetic Birthday Cake & Flame Blowing
+    // H. Chapter 5: The Dandelion Wish & Blowing (Mic + Fallback)
     // ----------------------------------------------------------------------
-    const cakeFlamesContainer = document.getElementById('interactive-cake-flames');
     const btnMicBlow = document.getElementById('btn-mic-blow');
     const btnTapBlow = document.getElementById('btn-tap-blow');
     const micStatusLabel = document.getElementById('mic-status-label');
@@ -511,13 +510,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishSuccessBox = document.getElementById('wish-success-box');
     const blowActionWrapper = document.getElementById('blow-action-wrapper');
 
-    let isCandleExtinguished = false;
+    let isDandelionBlown = false;
     let micStream = null;
     let micAnimId = null;
 
-    const extinguishCakeCandles = () => {
-        if (isCandleExtinguished) return;
-        isCandleExtinguished = true;
+    const blowDandelion = () => {
+        if (isDandelionBlown) return;
+        isDandelionBlown = true;
 
         if (micStream) {
             micStream.getTracks().forEach(t => t.stop());
@@ -525,20 +524,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (micAnimId) cancelAnimationFrame(micAnimId);
 
-        // Extinguish flames with smoke puffs
-        const flameWrappers = document.querySelectorAll('.candle-flame-wrapper');
-        flameWrappers.forEach((fw, i) => {
-            setTimeout(() => {
-                fw.classList.add('extinguished');
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-puff-cake';
-                fw.appendChild(smoke);
-                setTimeout(() => smoke.remove(), 2200);
-            }, i * 100);
+        // Animate floating seed auras drifting away
+        const seedAuras = document.querySelectorAll('.seed-aura');
+        seedAuras.forEach((sa, i) => {
+            sa.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+            sa.style.transform = `translateY(-60px) scale(1.4)`;
+            sa.style.opacity = '0';
         });
 
-        // Confetti explosion
-        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 120);
+        // Massive fairy dust & flower confetti explosion
+        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.42, 130);
 
         setTimeout(() => {
             if (blowActionWrapper) blowActionWrapper.style.display = 'none';
@@ -547,12 +542,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (btnTapBlow) {
-        btnTapBlow.addEventListener('click', extinguishCakeCandles);
+        btnTapBlow.addEventListener('click', blowDandelion);
     }
 
     if (btnMicBlow) {
         btnMicBlow.addEventListener('click', async () => {
-            if (isCandleExtinguished) return;
+            if (isDandelionBlown) return;
             try {
                 if (micStatusLabel) micStatusLabel.textContent = "Meminta izin mikrofon...";
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -565,14 +560,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const source = audioCtx.createMediaStreamSource(stream);
                 source.connect(analyser);
 
-                if (micStatusLabel) micStatusLabel.textContent = "Mikrofon aktif! Hembuskan napasmu ke layar ponsel! 💨";
+                if (micStatusLabel) micStatusLabel.textContent = "Mikrofon aktif! Hembuskan napasmu pada bunga dandelion! 💨";
                 if (micGaugeBar) micGaugeBar.classList.remove('hidden');
                 if (btnMicBlow) btnMicBlow.classList.add('hidden');
 
                 const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
                 const checkBlow = () => {
-                    if (isCandleExtinguished) return;
+                    if (isDandelionBlown) return;
                     analyser.getByteFrequencyData(dataArray);
 
                     let sum = 0;
@@ -583,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (micGaugeFill) micGaugeFill.style.width = `${percent}%`;
 
                     if (avg > 58) {
-                        extinguishCakeCandles();
+                        blowDandelion();
                         return;
                     }
                     micAnimId = requestAnimationFrame(checkBlow);
