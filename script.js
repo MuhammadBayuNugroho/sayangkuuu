@@ -499,6 +499,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(revealNext, 800);
 
+    // ==========================================================================
+    // CHAPTER REVEAL — triggers 'revealed' class (switches display:none → flex)
+    // ==========================================================================
+    const revealChapter = (id) => {
+        const el = document.getElementById(id);
+        if (!el || el.classList.contains('revealed')) return;
+        el.classList.add('revealed');
+    };
+
     // Touch / click to unlock next chapter + music
     const startJourney = () => {
         if (prologueEl.dataset.started === '1') return;
@@ -512,25 +521,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             prologueEl.style.display = 'none';
             revealChapter('chapter1');
+            // Scroll to chapter1 after reveal
+            setTimeout(() => {
+                const c1 = document.getElementById('chapter1');
+                if (c1) c1.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }, 1200);
     };
 
     if (heartbeatInner) heartbeatInner.addEventListener('click', startJourney);
     if (touchPrompt) touchPrompt.addEventListener('click', startJourney);
-
-    // ==========================================================================
-    // CHAPTER REVEAL — IntersectionObserver for scroll-triggered reveals
-    // ==========================================================================
-    const revealChapter = (id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.classList.remove('hidden-chapter');
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                el.classList.add('revealed');
-            });
-        });
-    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -540,15 +540,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Animate adore items when chapter3 is visible
                 if (id === 'chapter3') {
-                    document.querySelectorAll('.adore-item').forEach((item, i) => {
-                        setTimeout(() => item.classList.add('visible'), i * 100);
-                    });
+                    setTimeout(() => {
+                        document.querySelectorAll('.adore-item').forEach((item, i) => {
+                            setTimeout(() => item.classList.add('visible'), i * 120);
+                        });
+                    }, 300);
                 }
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
 
-    ['chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5', 'chapter6'].forEach(id => {
+    // Observe chapters 2-6 (chapter1 revealed by prologue tap)
+    ['chapter2', 'chapter3', 'chapter4', 'chapter5', 'chapter6'].forEach(id => {
         const el = document.getElementById(id);
         if (el) observer.observe(el);
     });

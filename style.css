@@ -39,8 +39,8 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background: var(--espresso);
-    color: var(--cream);
+    background: #1A0E0A;
+    color: #FAF7F2;
     overflow-x: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -58,6 +58,7 @@ body {
    LAYOUT — CHAPTERS
    ========================================================================== */
 .chapter {
+    min-height: 100vh;
     min-height: 100dvh;
     width: 100%;
     position: relative;
@@ -65,21 +66,20 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: env(safe-area-inset-top, 1.5rem) 1.5rem env(safe-area-inset-bottom, 1.5rem);
+    padding: 1.5rem;
+    padding-top: env(safe-area-inset-top, 1.5rem);
+    padding-bottom: env(safe-area-inset-bottom, 1.5rem);
     overflow: hidden;
 }
 
+/* Hidden until revealed by JS */
 .hidden-chapter {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s var(--ease-spring), transform 1s var(--ease-spring);
-    pointer-events: none;
+    display: none !important;
 }
 
 .hidden-chapter.revealed {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: flex !important;
+    animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .container {
@@ -128,8 +128,8 @@ body {
    SECTION 0 — PROLOGUE
    ========================================================================== */
 .prologue-chapter {
-    background: var(--espresso);
-    color: var(--cream);
+    background: #1A0E0A !important;
+    color: #FAF7F2;
 }
 
 .prologue-bg {
@@ -163,10 +163,11 @@ body {
     font-size: clamp(1.4rem, 5.5vw, 1.8rem);
     font-weight: 400;
     font-style: italic;
-    color: var(--cream);
+    color: #FAF7F2;
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 1s var(--ease-spring), transform 1s var(--ease-spring);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .whisper-line.visible {
@@ -248,14 +249,14 @@ body {
    SECTION 1 — HERO / MELODY & YOU
    ========================================================================== */
 .hero-chapter {
-    background: var(--espresso);
-    padding: 0;
+    background: #1A0E0A;
+    padding: 0 !important;
     overflow: hidden;
 }
 
 .hero-photo-wrap {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     z-index: 1;
 }
 
@@ -286,7 +287,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     padding: 0 1.75rem 3.5rem;
     text-align: center;
     width: 100%;
@@ -546,8 +548,8 @@ body {
    SECTION 4 — DOA
    ========================================================================== */
 .doa-chapter {
-    background: var(--espresso-mid);
-    color: var(--cream);
+    background: #2C1810 !important;
+    color: #FAF7F2;
     position: relative;
 }
 
@@ -1096,6 +1098,11 @@ body {
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(8px); }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes spinVinyl {
