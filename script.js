@@ -627,6 +627,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bgAudio) {
         bgAudio.src = birthdayConfig.musicSrc;
+        bgAudio.loop = false; // Pastikan loop bawaan mati agar memicu event 'ended'
+
+        // Otomatis ulangi lagu dari detik ke-44 (Reff) ketika lagu selesai
+        bgAudio.addEventListener('ended', () => {
+            bgAudio.currentTime = birthdayConfig.reffStartTime; // 44 detik
+            const replayPromise = bgAudio.play();
+            if (replayPromise !== undefined) {
+                replayPromise.then(() => {
+                    isPlaying = true;
+                    if (btnAudioToggle) btnAudioToggle.style.opacity = '1';
+                }).catch(err => {
+                    console.warn("Audio loop replay error:", err);
+                });
+            }
+        });
     }
 
     const playMusicFromReff = () => {
