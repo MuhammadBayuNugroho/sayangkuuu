@@ -9,15 +9,15 @@
 // 1. CONFIGURATION PANEL (DATA UTAMA WEBSITE)
 // ==========================================================================
 const birthdayConfig = {
-    partnerName: "[NAMA PACAR]",
-    partnerNickname: "[PANGGILAN PACAR]",
-    yourName: "[NAMA SAYA]",
+    partnerName: "SAYANG",
+    partnerNickname: "SAYANG",
+    yourName: "MAS BAYU",
     birthdayDate: "6 Oktober 2026",
-    
+
     // File Musik & Titik Awal Reff (Detik ke-44)
     musicSrc: "assets/music/Serta Mulia-Sal Priadi (Lyrics).mp3",
     reffStartTime: 44, // 0:44 detik
-    
+
     // Foto Utama (Hero)
     heroPhoto: "assets/photos/hero.jpg",
 
@@ -76,10 +76,10 @@ const birthdayConfig = {
 // ==========================================================================
 // 2. IMAGE FALLBACK HANDLER (GLOBAL)
 // ==========================================================================
-window.handleImageFallback = function(imgElement, type = 'general') {
+window.handleImageFallback = function (imgElement, type = 'general') {
     const title = type === 'hero' ? 'Happy 23rd Birthday' : 'Sweet Memories';
     const subtitle = birthdayConfig.partnerNickname || 'Sayangku';
-    
+
     const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
         <defs>
@@ -102,7 +102,7 @@ window.handleImageFallback = function(imgElement, type = 'general') {
             <text x="300" y="440" font-size="34">🌸 🌷 🌹</text>
         </g>
     </svg>`;
-    
+
     imgElement.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
     imgElement.onerror = null;
 };
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bgAudio.currentTime = birthdayConfig.reffStartTime; // 44 detik
             bgAudio.volume = 0;
             const playPromise = bgAudio.play();
-            
+
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     isPlaying = true;
