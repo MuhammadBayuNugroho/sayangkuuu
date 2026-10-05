@@ -6,119 +6,133 @@
     <title>Happy 23rd Birthday, Sayangku ❤️</title>
     
     <!-- Meta SEO & Social -->
-    <meta name="description" content="Sebuah hadiah digital romantis dan puitis yang dibuat khusus untuk merayakan ulang tahunmu yang ke-23.">
-    <meta name="theme-color" content="#1A0E0A">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Sebuah hadiah digital romantis, manis, dan estetik ala Pinterest yang dibuat khusus untuk merayakan ulang tahunmu yang ke-23.">
+    <meta name="theme-color" content="#FFF5F7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta property="og:title" content="Happy 23rd Birthday, Sayangku ❤️">
     <meta property="og:description" content="Sebuah alunan lagu dan segenap rasa cinta khusus untukmu.">
     <meta property="og:type" content="website">
 
-    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Caveat -->
+    <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, Caveat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Canvases for Floating Flower Petals & Golden Confetti -->
+    <!-- Canvases for Floating Pink Petals, Hearts & Golden Confetti -->
     <canvas id="petals-canvas"></canvas>
     <canvas id="confetti-canvas"></canvas>
 
     <!-- Background Audio Element -->
     <audio id="bg-audio" preload="auto"></audio>
 
-    <!-- Floating Minimalist Audio Pill (Discreet & Aesthetic) -->
+    <!-- Floating Minimalist Aesthetic Audio Pill (Pinterest Style) -->
     <div id="floating-audio-pill" class="floating-audio-pill hidden" aria-label="Pemutar Musik">
         <button id="btn-audio-toggle" class="audio-toggle-btn" aria-label="Pause / Play Lagu">
-            <span class="audio-flower-spin">🌸</span>
+            <span class="audio-heart-spin">💖</span>
             <span class="audio-wave">
                 <span class="bar bar-1"></span>
                 <span class="bar bar-2"></span>
                 <span class="bar bar-3"></span>
             </span>
         </button>
-        <span id="audio-track-label" class="audio-track-label">Sal Priadi — Serta Mulia</span>
+        <span id="audio-track-label" class="audio-track-label">Sal Priadi — Serta Mulia 🎵</span>
     </div>
 
     <!-- ==========================================================================
-         CHAPTER 1: THE INTIMATE PROLOGUE (Opening yang Sangat Intim & Puitis)
+         CHAPTER 1: THE INTIMATE PROLOGUE (Soft Pink & Cream Aesthetic)
     ========================================================================== -->
     <section id="chapter-prologue" class="chapter prologue-chapter" aria-label="Pembuka Kisah">
         <div class="prologue-bg-ambient"></div>
-        <div class="prologue-content">
-            <div class="prologue-flower-icon">
-                <svg viewBox="0 0 100 100" class="botanical-svg" fill="none" stroke="currentColor">
-                    <!-- Delicate Blooming Rose Outline -->
-                    <path d="M50 15 C40 15, 32 25, 36 38 C28 42, 25 54, 34 64 C28 72, 35 84, 46 84 C48 90, 56 94, 62 88 C70 92, 80 84, 76 74 C84 66, 82 52, 72 46 C76 34, 68 20, 56 22 Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M50 30 C45 35, 45 45, 50 50 C55 45, 55 35, 50 30 Z" stroke-width="1.5"/>
-                    <path d="M50 84 Q50 96 46 100 M50 84 Q54 94 64 96" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
+        <div class="prologue-content reveal-on-scroll is-visible">
+            
+            <!-- Emoticon Love Pink Glowing Icon -->
+            <div class="prologue-heart-wrapper">
+                <div class="heart-pulse-glow"></div>
+                <span class="prologue-main-heart">💖</span>
+                <div class="sparkle-orbit s1">✨</div>
+                <div class="sparkle-orbit s2">🌸</div>
             </div>
 
             <div class="whisper-sequence" id="whisper-sequence">
-                <p class="whisper-line line-1">Hai kamu...</p>
-                <p class="whisper-line line-2">Di antara riuhnya hari ini, luangkan sedikit waktumu.</p>
-                <p class="whisper-line line-3">Ada sebuah melodi manis dan sebait rasa yang ingin kubisikkan padamu.</p>
+                <p class="whisper-line line-1">Hai Sayangku...</p>
+                <p class="whisper-line line-2">Di antara hangatnya hari bahagiamu ini...</p>
+                <p class="whisper-line line-3">Ada sebuah melodi manis dan segenap rasa yang ingin kupersembahkan khusus untukmu.</p>
             </div>
 
+            <!-- Romantic Glowing Touch Button (Ribbon Bow & Heartbeat) -->
             <div class="touch-interactive-box" id="touch-interactive-box">
                 <button id="btn-start-journey" class="btn-heartbeat-touch" type="button" aria-label="Mulai Perjalanan">
-                    <div class="touch-ripple"></div>
+                    <div class="touch-ripple r1"></div>
+                    <div class="touch-ripple r2"></div>
                     <div class="touch-inner">
-                        <span class="touch-earphone-icon">🎧</span>
+                        <span class="touch-icon">🎀</span>
                     </div>
                 </button>
-                <p class="touch-prompt-text">Pasang earphone-mu,<br><span class="touch-highlight">sentuh lingkaran untuk membuka</span> 🌸</p>
+                <p class="touch-prompt-text">
+                    Sentuh pita di atas<br>
+                    <span class="touch-highlight">untuk membuka lagu & cerita kita 💖</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- ==========================================================================
-         CHAPTER 2: THE MELODY & YOU (Reff Sal Priadi Bergema + Foto Utama)
+         CHAPTER 2: THE MELODY & YOU (Soft Pink & Clean Aesthetic)
     ========================================================================== -->
     <section id="chapter-hero" class="chapter hero-chapter hidden-chapter" aria-label="Momen Bahagia">
-        <div class="hero-photo-container">
-            <img id="hero-img" src="assets/photos/hero.jpg" alt="Foto Pacar Tersayang" class="hero-photo" onerror="window.handleImageFallback(this, 'hero')">
-            <div class="hero-vignette-overlay"></div>
+        <div class="hero-bg-blobs">
+            <div class="blob-glow b1"></div>
+            <div class="blob-glow b2"></div>
         </div>
 
-        <!-- Floating Botanical Corner Accents -->
-        <div class="floral-corner top-left">🌸</div>
-        <div class="floral-corner bottom-right">🌸</div>
-
-        <div class="hero-content">
-            <span class="hero-date-badge">06 • 10 • 2026</span>
-            <h1 class="hero-title">Happy 23rd Birthday</h1>
-            <p class="hero-for-name">Untuk <span id="hero-partner-name">[PANGGILAN PACAR]</span> ❤️</p>
+        <div class="hero-card-frame reveal-on-scroll">
+            <div class="washi-tape top-center"></div>
             
-            <div class="hero-lyrics-quote">
-                <p class="lyrics-line">"Muliakanlah hatinya, suburkanlah cintanya,</p>
-                <p class="lyrics-line">kuatkanlah langkahnya, panjang usianya..."</p>
-                <span class="lyrics-author">— Sal Priadi, Serta Mulia</span>
+            <div class="hero-photo-wrapper">
+                <img id="hero-img" src="assets/photos/IMG-20260517-WA0007.jpg" alt="Foto Pacar Tersayang" class="hero-photo" onerror="window.handleImageFallback(this, 'hero')">
+                <div class="hero-photo-gradient"></div>
+                <div class="hero-stamp-badge">
+                    <span>Oct 06 • 2026</span>
+                </div>
             </div>
 
-            <button class="btn-next-chapter" data-target="chapter-polaroid" type="button">
-                <span>Buka Lembaran Kenangan</span>
-                <span class="btn-arrow">↓</span>
-            </button>
+            <div class="hero-content">
+                <span class="hero-pill-badge">🎀 For My Favorite Person</span>
+                <h1 class="hero-title">Happy 23rd Birthday</h1>
+                <p class="hero-for-name">Untuk <span id="hero-partner-name">SAYANGKU</span> ❤️</p>
+                
+                <div class="hero-lyrics-quote">
+                    <span class="quote-flower">🌸</span>
+                    <p class="lyrics-line">"Muliakanlah hatinya, suburkanlah cintanya,</p>
+                    <p class="lyrics-line">kuatkanlah langkahnya, panjang usianya..."</p>
+                    <span class="lyrics-author">— Sal Priadi, Serta Mulia</span>
+                </div>
+
+                <button class="btn-pinterest-pill btn-next-chapter" data-target="chapter-polaroid" type="button">
+                    <span>Buka Lembaran Kenangan</span>
+                    <span class="btn-arrow">↓</span>
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- ==========================================================================
-         CHAPTER 3: LITTLE POLAROID MOMENTS (Swipe / Tap Card Stack)
+         CHAPTER 3: LITTLE POLAROID MOMENTS (Pinterest Scrapbook Aesthetic)
     ========================================================================== -->
     <section id="chapter-polaroid" class="chapter polaroid-chapter hidden-chapter" aria-label="Galeri Kenangan Polaroid">
-        <div class="chapter-header">
+        <div class="chapter-header reveal-on-scroll">
             <span class="chapter-tag">Memories in Bloom 🌷</span>
             <h2 class="chapter-title">Momen Manis Kita</h2>
             <p class="chapter-subtitle">Setiap lembar foto menyimpan tawa dan kehangatan yang mekar abadi.</p>
         </div>
 
-        <div class="polaroid-deck-wrapper">
+        <div class="polaroid-deck-wrapper reveal-on-scroll delay-1">
             <div class="polaroid-stack" id="polaroid-stack">
-                <!-- Injected via JavaScript from birthdayConfig.memories -->
+                <!-- Injected via JavaScript from birthdayConfig.memories with proper Pinterest spacing & washi tape -->
             </div>
             
             <div class="polaroid-controls">
@@ -127,71 +141,75 @@
             </div>
         </div>
 
-        <button class="btn-next-chapter" data-target="chapter-adore" type="button">
+        <button class="btn-pinterest-pill btn-next-chapter reveal-on-scroll delay-2" data-target="chapter-adore" type="button">
             <span>Hal-hal yang kusuka darimu</span>
             <span class="btn-arrow">↓</span>
         </button>
     </section>
 
     <!-- ==========================================================================
-         CHAPTER 4: THINGS I ADORE (Padat, Menyentuh, & Puitis)
+         CHAPTER 4: THINGS I ADORE (Pinterest Aesthetic Cards)
     ========================================================================== -->
     <section id="chapter-adore" class="chapter adore-chapter hidden-chapter" aria-label="Hal yang Kusuka">
-        <div class="chapter-header">
+        <div class="chapter-header reveal-on-scroll">
             <span class="chapter-tag">The Little Blooms 💐</span>
             <h2 class="chapter-title">Yang Selalu Kukagumi Dari Kamu</h2>
+            <p class="chapter-subtitle">Hal-hal sederhana tentangmu yang selalu membuatku jatuh hati.</p>
         </div>
 
-        <div class="adore-cards-list" id="adore-cards-list">
-            <!-- 4-5 focused touching heartfelt cards injected via script -->
+        <div class="adore-cards-list reveal-on-scroll delay-1" id="adore-cards-list">
+            <!-- Injected via script: 4 aesthetic cards with cute pastel badges -->
         </div>
 
-        <button class="btn-next-chapter" data-target="chapter-candle" type="button">
-            <span>Make a wish di usiamu yang ke-23</span>
+        <button class="btn-pinterest-pill btn-next-chapter reveal-on-scroll delay-2" data-target="chapter-candle" type="button">
+            <span>Tiup Kue Ulang Tahunmu</span>
             <span class="btn-arrow">↓</span>
         </button>
     </section>
 
     <!-- ==========================================================================
-         CHAPTER 5: THE 23RD CANDLE & WISH (Lilin Estetik & Tiupan Napas)
+         CHAPTER 5: THE 23RD CAKE & WISH (Aesthetic Korean Cake + Interactive Flame)
     ========================================================================== -->
-    <section id="chapter-candle" class="chapter candle-chapter hidden-chapter" aria-label="Tiup Lilin Ulang Tahun">
-        <div class="candle-ambient-glow"></div>
-        <div class="chapter-header">
-            <span class="chapter-tag">Chapter 23 🎂</span>
-            <h2 class="chapter-title">Pejamkan Mata & Berdoalah</h2>
-            <p class="chapter-subtitle">Pikirkan satu permohonan terindahmu, lalu hembuskan napasmu.</p>
+    <section id="chapter-candle" class="chapter candle-chapter hidden-chapter" aria-label="Kue Ulang Tahun Estetik">
+        <div class="chapter-header reveal-on-scroll">
+            <span class="chapter-tag">Make A Wish 🎂</span>
+            <h2 class="chapter-title">Kue Spesial Ulang Tahun ke-23</h2>
+            <p class="chapter-subtitle">Pejamkan matamu, pikirkan satu doa terindahmu, lalu tiup lilinnya.</p>
         </div>
 
-        <!-- Minimalist Aesthetic Floral Candle Stage -->
-        <div class="candle-stage">
-            <div class="floral-wreath">
-                <span class="wreath-flower f1">🌸</span>
-                <span class="wreath-flower f2">🌷</span>
-                <span class="wreath-flower f3">🌹</span>
-                <span class="wreath-flower f4">🌸</span>
-            </div>
+        <!-- Korean Aesthetic Cake Container -->
+        <div class="aesthetic-cake-card reveal-on-scroll delay-1">
+            <div class="washi-tape top-left-tape"></div>
+            <div class="washi-tape top-right-tape"></div>
 
-            <div class="number-age-display">
-                <span class="age-digit">2</span>
+            <div class="cake-image-viewport">
+                <img src="assets/photos/cake.jpg" alt="Aesthetic Korean Birthday Cake" class="cake-photo" onerror="window.handleImageFallback(this, 'cake')">
                 
-                <!-- The Magical 23rd Candle -->
-                <div class="single-magical-candle" id="magical-candle">
-                    <div class="candle-flame" id="candle-flame">
-                        <div class="flame-core"></div>
+                <!-- Interactive Glowing Candle Flames Placed on Cake Candles -->
+                <div class="interactive-cake-flames" id="interactive-cake-flames">
+                    <div class="candle-flame-wrapper flame-pos-1">
+                        <div class="flame-glow"></div>
+                        <div class="candle-flame"></div>
                     </div>
-                    <div class="candle-wick"></div>
-                    <div class="candle-stem"></div>
+                    <div class="candle-flame-wrapper flame-pos-2">
+                        <div class="flame-glow"></div>
+                        <div class="candle-flame"></div>
+                    </div>
+                    <div class="candle-flame-wrapper flame-pos-3">
+                        <div class="flame-glow"></div>
+                        <div class="candle-flame"></div>
+                    </div>
                 </div>
-
-                <span class="age-digit">3</span>
             </div>
-            <p class="candle-caption">Tahun Penuh Berkah & Keindahan</p>
+
+            <div class="cake-label-box">
+                <span class="cake-tag-pill">✨ Chapter 23 Special Cake ✨</span>
+            </div>
         </div>
 
         <!-- Blowing Action Buttons -->
-        <div class="blow-action-wrapper" id="blow-action-wrapper">
-            <div id="mic-status-label" class="mic-status-label">Kamu bisa meniup langsung ke mikrofon ponselmu!</div>
+        <div class="blow-action-wrapper reveal-on-scroll delay-2" id="blow-action-wrapper">
+            <div id="mic-status-label" class="mic-status-label">Tiup langsung ke mikrofon ponselmu atau ketuk tombol! 💨</div>
             
             <div id="mic-gauge-bar" class="mic-gauge-bar hidden">
                 <div id="mic-gauge-fill" class="mic-gauge-fill"></div>
@@ -202,20 +220,20 @@
                     <span>AKTIFKAN MIKROFON</span> 🎤
                 </button>
                 <button id="btn-tap-blow" class="btn-romantic-secondary" type="button">
-                    <span>TIUP SEKARANG (KETUK)</span> 💨
+                    <span>TIUP LILIN SEKARANG</span> 💨
                 </button>
             </div>
         </div>
 
         <!-- Success Wish Reveal -->
         <div id="wish-success-box" class="wish-success-box hidden" aria-live="polite">
-            <div class="wish-flower-burst">✨ 🌸 💐 🌸 ✨</div>
-            <h3 class="wish-congrats-title">Semoga Terkabul, Sayangku! ❤️</h3>
+            <div class="wish-flower-burst">✨ 🎂 🌸 💖 ✨</div>
+            <h3 class="wish-congrats-title">Doamu Didengar Semesta! ❤️</h3>
             <div class="wish-text-content" id="wish-text-content">
                 <p>Semoga langkahmu di usia 23 selalu dijaga, hatimu selalu dilapangkan, dan senyum manismu mekar setiap hari.</p>
             </div>
-            <button class="btn-next-chapter" data-target="chapter-letter" type="button">
-                <span>Buka Surat Cinta Terakhir</span>
+            <button class="btn-pinterest-pill btn-next-chapter" data-target="chapter-letter" type="button">
+                <span>Buka Surat Terakhir</span>
                 <span class="btn-arrow">↓</span>
             </button>
         </div>
@@ -225,27 +243,28 @@
          CHAPTER 6: THE GOLDEN ENVELOPE & FINAL LETTER (Epilogue)
     ========================================================================== -->
     <section id="chapter-letter" class="chapter letter-chapter hidden-chapter" aria-label="Surat Cinta">
-        <div class="letter-floral-bg"></div>
-
-        <div class="chapter-header">
-            <span class="chapter-tag">With All My Heart 💌</span>
+        <div class="chapter-header reveal-on-scroll">
+            <span class="chapter-tag">With All My Love 💌</span>
             <h2 class="chapter-title">Sebuah Surat Kecil Untukmu</h2>
+            <p class="chapter-subtitle">Kutulis dengan segenap rasa sayang untuk hari bahagiamu.</p>
         </div>
 
-        <div class="envelope-scene" id="envelope-scene">
-            <!-- Sealed Envelope -->
+        <div class="envelope-scene reveal-on-scroll delay-1" id="envelope-scene">
+            <!-- Sealed Envelope with Washi Tape and Rose Wax Seal -->
             <div class="botanical-envelope" id="botanical-envelope" role="button" tabindex="0" aria-label="Buka Amplop Surat Cinta">
                 <div class="envelope-top-flap" id="envelope-top-flap"></div>
                 <div class="envelope-inner-letter"></div>
                 <div class="envelope-base"></div>
                 <div class="floral-wax-seal" id="floral-wax-seal">
-                    <span>🌹</span>
+                    <span>💖</span>
                 </div>
-                <span class="envelope-tap-prompt">Sentuh segel lilin untuk membuka 💌</span>
+                <span class="envelope-tap-prompt">Sentuh segel hati untuk membuka surat 💌</span>
             </div>
 
-            <!-- Unfolded Aesthetic Letter Paper -->
+            <!-- Unfolded Aesthetic Letter Paper with Scrapbook Feel -->
             <article class="unfolded-letter-paper" id="unfolded-letter-paper" aria-live="polite">
+                <div class="washi-tape top-center"></div>
+
                 <div class="letter-paper-header">
                     <span class="letter-paper-date">6 Oktober 2026</span>
                     <span class="letter-paper-flower">🌸</span>
@@ -258,15 +277,15 @@
                         Terima kasih sudah terlahir ke dunia ini, dan terima kasih sudah mengizinkanku menjadi salah satu orang yang bisa mengagumi ketulusan serta keindahan hatimu.
                     </p>
                     <p id="custom-letter-paragraph">
-                        Di antara jutaan hal yang terjadi dalam hidupku, aku selalu bersyukur salah satunya adalah bisa mengenalmu. Semoga seperti bunga yang mekar di musim semi, hidupmu selalu dipenuhi warna, ketenangan, dan kebahagiaan.
+                        Di antara jutaan hal yang terjadi dalam hidupku, aku selalu bersyukur salah satunya adalah bisa mengenal dan mendampingimu. Semoga seperti bunga yang mekar di musim semi, hidupmu selalu dipenuhi warna, ketenangan, dan kebahagiaan.
                     </p>
                     <p>
-                        Tetaplah menjadi kamu yang apa adanya—yang selalu membuat hari-hariku terasa lebih tenang dan bermakna.
+                        Tetaplah menjadi kamu yang apa adanya—yang selalu membuat hari-hariku terasa lebih tenang, hangat, dan bermakna.
                     </p>
 
                     <div class="letter-paper-signoff">
                         <p class="sign-from">Selamanya mencintaimu,</p>
-                        <p class="sign-author" id="letter-author-name">[NAMA SAYA]</p>
+                        <p class="sign-author" id="letter-author-name">Mas Bayu</p>
                         <span class="sign-date">Chapter 23 Begins... ❤️</span>
                     </div>
                 </div>
@@ -274,8 +293,8 @@
         </div>
 
         <!-- Footer / Easter Egg -->
-        <footer class="cinematic-footer">
-            <p>Dibuat sepenuh hati untuk <span id="footer-partner-label">[PANGGILAN PACAR]</span></p>
+        <footer class="cinematic-footer reveal-on-scroll delay-2">
+            <p>Dibuat sepenuh hati untuk <span id="footer-partner-label">SAYANGKU</span></p>
             <button id="footer-easter-egg" class="footer-heart-btn" aria-label="Secret Love Note" title="Ada rahasia kecil...">🌸</button>
         </footer>
     </section>
@@ -288,9 +307,9 @@
         <div class="easter-modal-card">
             <span class="easter-flower-anim">💐</span>
             <h3>Pesan Rahasia Terbuka!</h3>
-            <p class="easter-quote">"Dari sekian banyak bunga di taman dunia, cuma kamu yang paling memikat hatiku."</p>
+            <p class="easter-quote">"Dari sekian banyak bunga dan bintang di semesta, cuma kamu yang paling memikat hatiku."</p>
             <p class="easter-note">Selamat ulang tahun ke-23, sayangku. ❤️</p>
-            <button id="btn-close-easter" class="btn-romantic-action" type="button">Tutup & Peluk Aku 🌸</button>
+            <button id="btn-close-easter" class="btn-romantic-action" type="button">Tutup & Peluk Mas Bayu 💖</button>
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 /**
  * ==========================================================================
- * MASTER SCRIPT — ROMANTIC FLORAL STORYBOOK (6 CHAPTERS MOBILE-FIRST)
+ * MASTER SCRIPT — ROMANTIC PINTEREST AESTHETIC STORYBOOK
  * ==========================================================================
  * Musik: Sal Priadi — Serta Mulia (Mulai tepat pada detik ke-44 / Reff)
  */
@@ -9,17 +9,17 @@
 // 1. CONFIGURATION PANEL (DATA UTAMA WEBSITE)
 // ==========================================================================
 const birthdayConfig = {
-    partnerName: "SAYANG",
-    partnerNickname: "SAYANG",
-    yourName: "MAS BAYU",
+    partnerName: "SAYANGKU",
+    partnerNickname: "SAYANGKU",
+    yourName: "Mas Bayu",
     birthdayDate: "6 Oktober 2026",
-
+    
     // File Musik & Titik Awal Reff (Detik ke-44)
     musicSrc: "assets/music/Serta Mulia-Sal Priadi (Lyrics).mp3",
     reffStartTime: 44, // 0:44 detik
-
+    
     // Foto Utama (Hero)
-    heroPhoto: "assets/photos/hero.jpg",
+    heroPhoto: "assets/photos/IMG-20260517-WA0007.jpg",
 
     // Chapter 3: 5 Momen Polaroid Paling Berkesan
     memories: [
@@ -45,7 +45,7 @@ const birthdayConfig = {
         }
     ],
 
-    // Chapter 4: 4 Hal yang Paling Dikagumi (Ringkas & Puitis)
+    // Chapter 4: 4 Hal yang Paling Dikagumi (Ringkas & Puitis ala Pinterest)
     adores: [
         {
             flower: "🌸",
@@ -76,39 +76,39 @@ const birthdayConfig = {
 // ==========================================================================
 // 2. IMAGE FALLBACK HANDLER (GLOBAL)
 // ==========================================================================
-window.handleImageFallback = function (imgElement, type = 'general') {
-    const title = type === 'hero' ? 'Happy 23rd Birthday' : 'Sweet Memories';
+window.handleImageFallback = function(imgElement, type = 'general') {
+    const title = type === 'hero' ? 'Happy 23rd Birthday' : (type === 'cake' ? 'Aesthetic Cake' : 'Sweet Memories');
     const subtitle = birthdayConfig.partnerNickname || 'Sayangku';
-
+    
     const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
         <defs>
             <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FCE7EB"/>
-                <stop offset="50%" stop-color="#FAF1E8"/>
-                <stop offset="100%" stop-color="#F2DFD7"/>
+                <stop offset="0%" stop-color="#FFF0F3"/>
+                <stop offset="50%" stop-color="#FFF9FA"/>
+                <stop offset="100%" stop-color="#FCE1E7"/>
             </linearGradient>
             <radialGradient id="sun" cx="50%" cy="40%" r="50%">
-                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#FCE7EB" stop-opacity="0"/>
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#FFF0F3" stop-opacity="0"/>
             </radialGradient>
         </defs>
         <rect width="600" height="750" fill="url(#bgG)"/>
-        <circle cx="300" cy="300" r="200" fill="url(#sun)"/>
-        <g text-anchor="middle" font-family="'Georgia', serif" fill="#3D2924">
+        <circle cx="300" cy="300" r="220" fill="url(#sun)"/>
+        <g text-anchor="middle" font-family="'Georgia', serif" fill="#382229">
             <text x="300" y="290" font-size="36" font-weight="bold">${title}</text>
-            <text x="300" y="340" font-size="24" font-style="italic" fill="#D8B458">✦ ${subtitle} ✦</text>
-            <text x="300" y="390" font-size="16" font-family="sans-serif" fill="#75625D">Simpan foto di assets/photos</text>
-            <text x="300" y="440" font-size="34">🌸 🌷 🌹</text>
+            <text x="300" y="340" font-size="24" font-style="italic" fill="#D86B84">✦ ${subtitle} ✦</text>
+            <text x="300" y="390" font-size="16" font-family="sans-serif" fill="#745C64">Simpan foto di assets/photos</text>
+            <text x="300" y="440" font-size="34">🌸 💖 🌸</text>
         </g>
     </svg>`;
-
+    
     imgElement.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
     imgElement.onerror = null;
 };
 
 // ==========================================================================
-// 3. FLOATING PETALS CANVAS (KELOPAK BUNGA BERGUGURAN HALUS)
+// 3. FLOATING PINK PETALS & HEARTS CANVAS
 // ==========================================================================
 class FloatingPetalsEngine {
     constructor(canvasId) {
@@ -135,14 +135,32 @@ class FloatingPetalsEngine {
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
                 size: Math.random() * 12 + 8,
-                speedY: Math.random() * 0.7 + 0.4,
-                speedX: Math.sin(Math.random() * Math.PI) * 0.5,
+                speedY: Math.random() * 0.65 + 0.35,
+                speedX: Math.sin(Math.random() * Math.PI) * 0.45,
                 rotation: Math.random() * 360,
                 rotationSpeed: (Math.random() - 0.5) * 1.2,
-                opacity: Math.random() * 0.45 + 0.25,
-                color: Math.random() > 0.4 ? '#F9D0DA' : '#FCE7EB'
+                opacity: Math.random() * 0.45 + 0.3,
+                type: Math.random() > 0.4 ? 'petal' : 'heart',
+                color: Math.random() > 0.4 ? '#F7CAD0' : '#FCE1E7'
             });
         }
+    }
+
+    drawHeart(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate((p.rotation * Math.PI) / 180);
+        this.ctx.fillStyle = p.color;
+        this.ctx.globalAlpha = p.opacity;
+
+        const size = p.size * 0.8;
+        this.ctx.beginPath();
+        const topCurveHeight = size * 0.3;
+        this.ctx.moveTo(0, topCurveHeight);
+        this.ctx.bezierCurveTo(-size / 2, -topCurveHeight, -size, size / 3, 0, size);
+        this.ctx.bezierCurveTo(size, size / 3, size / 2, -topCurveHeight, 0, topCurveHeight);
+        this.ctx.fill();
+        this.ctx.restore();
     }
 
     drawPetal(p) {
@@ -152,7 +170,6 @@ class FloatingPetalsEngine {
         this.ctx.fillStyle = p.color;
         this.ctx.globalAlpha = p.opacity;
 
-        // Elegant curved petal shape
         this.ctx.beginPath();
         this.ctx.moveTo(0, 0);
         this.ctx.quadraticCurveTo(p.size / 2, -p.size, p.size, 0);
@@ -172,7 +189,12 @@ class FloatingPetalsEngine {
                 p.y = -20;
                 p.x = Math.random() * this.width;
             }
-            this.drawPetal(p);
+
+            if (p.type === 'heart') {
+                this.drawHeart(p);
+            } else {
+                this.drawPetal(p);
+            }
         }
         requestAnimationFrame(() => this.animate());
     }
@@ -187,7 +209,7 @@ class ConfettiEngine {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.colors = ['#F9D0DA', '#E58B9E', '#D8B458', '#FFFFFF', '#C75B70'];
+        this.colors = ['#F7CAD0', '#F29BB0', '#D86B84', '#FFFFFF', '#F5E6BD'];
         this.isAnimating = false;
         this.resize();
         window.addEventListener('resize', () => this.resize());
@@ -198,7 +220,7 @@ class ConfettiEngine {
         this.height = this.canvas.height = window.innerHeight;
     }
 
-    burst(x = window.innerWidth / 2, y = window.innerHeight / 2, count = 70) {
+    burst(x = window.innerWidth / 2, y = window.innerHeight / 2, count = 75) {
         for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
             const velocity = Math.random() * 9 + 3;
@@ -286,7 +308,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // B. Audio Controller (Reff Start @ 44s)
+    // B. Professional Motion Observer (Scroll-Triggered Reveals)
+    // ----------------------------------------------------------------------
+    const initScrollObserver = () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    };
+
+    initScrollObserver();
+
+    // ----------------------------------------------------------------------
+    // C. Audio Controller (Reff Start @ 44s)
     // ----------------------------------------------------------------------
     const bgAudio = document.getElementById('bg-audio');
     const floatingAudioPill = document.getElementById('floating-audio-pill');
@@ -303,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bgAudio.currentTime = birthdayConfig.reffStartTime; // 44 detik
             bgAudio.volume = 0;
             const playPromise = bgAudio.play();
-
+            
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     isPlaying = true;
@@ -344,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // C. Chapter 1: Prologue Whisper Sequence Animation
+    // D. Chapter 1: Prologue Whisper Sequence Animation
     // ----------------------------------------------------------------------
     const line1 = document.querySelector('.whisper-line.line-1');
     const line2 = document.querySelector('.whisper-line.line-2');
@@ -357,16 +399,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { if (line3) line3.classList.add('revealed'); }, 3200);
     setTimeout(() => { if (touchBox) touchBox.classList.add('revealed'); }, 4400);
 
-    // Trigger on touch heartbeat button
+    // Trigger on touch ribbon bow button
     if (btnStart) {
         btnStart.addEventListener('click', () => {
-            // Play song starting at 44s (Reff)
             playMusicFromReff();
+            confettiFX.burst(window.innerWidth / 2, window.innerHeight / 2, 85);
 
-            // Petal confetti burst
-            confettiFX.burst(window.innerWidth / 2, window.innerHeight / 2, 80);
-
-            // Hide Prologue, show Hero Chapter
             const prologueChapter = document.getElementById('chapter-prologue');
             const heroChapter = document.getElementById('chapter-hero');
 
@@ -376,13 +414,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     prologueChapter.classList.add('hidden-chapter');
                     heroChapter.classList.remove('hidden-chapter');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Trigger scroll observer for new elements
+                    initScrollObserver();
                 }, 600);
             }
         });
     }
 
     // ----------------------------------------------------------------------
-    // D. Chapter Navigation Buttons
+    // E. Chapter Navigation Buttons
     // ----------------------------------------------------------------------
     document.querySelectorAll('.btn-next-chapter').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -391,12 +432,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetChapter) {
                 targetChapter.classList.remove('hidden-chapter');
                 targetChapter.scrollIntoView({ behavior: 'smooth' });
+                initScrollObserver();
             }
         });
     });
 
     // ----------------------------------------------------------------------
-    // E. Chapter 3: Interactive Polaroid Stack (Tap / Swipe to Next Card)
+    // F. Chapter 3: Pinterest Polaroid Stack with Washi Tape & Balanced Spacing
     // ----------------------------------------------------------------------
     const polaroidStack = document.getElementById('polaroid-stack');
     const counterText = document.getElementById('polaroid-counter-text');
@@ -405,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (polaroidStack && birthdayConfig.memories.length > 0) {
         polaroidStack.innerHTML = birthdayConfig.memories.map((m, idx) => `
             <div class="polaroid-card" data-index="${idx}" style="z-index: ${birthdayConfig.memories.length - idx}">
+                <div class="washi-tape top-center"></div>
                 <div class="polaroid-photo-frame">
                     <img src="${m.image}" alt="Momen ${idx + 1}" class="polaroid-photo" loading="lazy" onerror="window.handleImageFallback(this, 'gallery')">
                 </div>
@@ -428,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 25);
 
-                // If all swiped, reset stack
+                // If all swiped, reset stack smoothly
                 if (currentPolaroidIndex >= cards.length) {
                     setTimeout(() => {
                         cards.forEach(c => c.classList.remove('swiped-away'));
@@ -441,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // F. Chapter 4: Things I Adore List Injection
+    // G. Chapter 4: Things I Adore List Injection
     // ----------------------------------------------------------------------
     const adoreList = document.getElementById('adore-cards-list');
     if (adoreList && birthdayConfig.adores) {
@@ -457,10 +500,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // G. Chapter 5: 23rd Candle & Blowing (Mic + Fallback)
+    // H. Chapter 5: Korean Aesthetic Birthday Cake & Flame Blowing
     // ----------------------------------------------------------------------
-    const candleFlame = document.getElementById('candle-flame');
-    const magicalCandle = document.getElementById('magical-candle');
+    const cakeFlamesContainer = document.getElementById('interactive-cake-flames');
     const btnMicBlow = document.getElementById('btn-mic-blow');
     const btnTapBlow = document.getElementById('btn-tap-blow');
     const micStatusLabel = document.getElementById('mic-status-label');
@@ -473,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let micStream = null;
     let micAnimId = null;
 
-    const extinguishCandle = () => {
+    const extinguishCakeCandles = () => {
         if (isCandleExtinguished) return;
         isCandleExtinguished = true;
 
@@ -483,28 +525,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (micAnimId) cancelAnimationFrame(micAnimId);
 
-        // Put out flame
-        if (candleFlame) candleFlame.classList.add('extinguished');
+        // Extinguish flames with smoke puffs
+        const flameWrappers = document.querySelectorAll('.candle-flame-wrapper');
+        flameWrappers.forEach((fw, i) => {
+            setTimeout(() => {
+                fw.classList.add('extinguished');
+                const smoke = document.createElement('div');
+                smoke.className = 'smoke-puff-cake';
+                fw.appendChild(smoke);
+                setTimeout(() => smoke.remove(), 2200);
+            }, i * 100);
+        });
 
-        // Smoke puff
-        if (magicalCandle) {
-            const smoke = document.createElement('div');
-            smoke.className = 'candle-smoke-rise';
-            magicalCandle.appendChild(smoke);
-            setTimeout(() => smoke.remove(), 2200);
-        }
-
-        // Floral Confetti explosion
-        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 110);
+        // Confetti explosion
+        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 120);
 
         setTimeout(() => {
             if (blowActionWrapper) blowActionWrapper.style.display = 'none';
             if (wishSuccessBox) wishSuccessBox.classList.remove('hidden');
-        }, 600);
+        }, 700);
     };
 
     if (btnTapBlow) {
-        btnTapBlow.addEventListener('click', extinguishCandle);
+        btnTapBlow.addEventListener('click', extinguishCakeCandles);
     }
 
     if (btnMicBlow) {
@@ -539,8 +582,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const percent = Math.min((avg / 80) * 100, 100);
                     if (micGaugeFill) micGaugeFill.style.width = `${percent}%`;
 
-                    if (avg > 60) {
-                        extinguishCandle();
+                    if (avg > 58) {
+                        extinguishCakeCandles();
                         return;
                     }
                     micAnimId = requestAnimationFrame(checkBlow);
@@ -558,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // H. Chapter 6: Botanical Envelope & Final Letter
+    // I. Chapter 6: Botanical Envelope & Final Letter
     // ----------------------------------------------------------------------
     const envelope = document.getElementById('botanical-envelope');
     const flap = document.getElementById('envelope-top-flap');
@@ -567,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (envelope && unfoldedLetter) {
         envelope.addEventListener('click', () => {
             if (flap) flap.classList.add('open');
-            confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.6, 50);
+            confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.6, 60);
 
             setTimeout(() => {
                 envelope.style.display = 'none';
@@ -577,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // I. Easter Egg Secret Modal
+    // J. Easter Egg Secret Modal
     // ----------------------------------------------------------------------
     const easterBtn = document.getElementById('footer-easter-egg');
     const easterModal = document.getElementById('easter-egg-modal');

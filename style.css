@@ -1,41 +1,46 @@
 /* ==========================================================================
-   ROMANTIC FLORAL STORYBOOK — MOBILE-FIRST CINEMATIC EXPERIENCE
-   Palette: Warm Espresso, Romantic Cream, Soft Peony, Champagne Gold, Sage
-   Typography: Cormorant Garamond, Plus Jakarta Sans, Caveat
+   ROMANTIC PINTEREST AESTHETIC STORYBOOK — LIGHT & SOFT PASTEL BLUSH
+   Palette: Soft Baby Pink, Dreamy Cream, Rose Blush, Champagne Gold
+   Typography: Playfair Display, Plus Jakarta Sans, Caveat
    ========================================================================== */
 
 :root {
-    --espresso-dark: #150C09;
-    --espresso-soft: #231612;
-    --cream-base: #FAF6F0;
-    --cream-card: #FFFEFB;
-    --rose-soft: #F9D0DA;
-    --rose-primary: #E58B9E;
-    --rose-deep: #C75B70;
-    --gold-accent: #D8B458;
-    --gold-glow: rgba(216, 180, 88, 0.28);
-    --sage-leaf: #82947E;
-    --text-dark: #201411;
-    --text-muted: #6B5B56;
-    --text-light: #FAF6F0;
+    /* Dreamy Pastel Palette (100% Light & Soft) */
+    --bg-cream: #FFF9FA;
+    --bg-surface: #FFFFFF;
+    --bg-blush-soft: #FFF0F4;
+    --bg-blush-card: #FDF4F6;
+    
+    --pink-pastel: #FCE1E7;
+    --pink-primary: #F29BB0;
+    --pink-deep: #D86B84;
+    --pink-glow: rgba(242, 155, 176, 0.35);
 
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --gold-accent: #C9A147;
+    --gold-soft: #F5E6BD;
+
+    --text-primary: #382229;
+    --text-secondary: #745C64;
+    --text-muted: #A38C93;
+    --border-soft: rgba(242, 180, 195, 0.35);
+
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-hand: 'Caveat', cursive, sans-serif;
 
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
     --radius-full: 9999px;
 
-    --shadow-soft: 0 4px 20px rgba(32, 20, 17, 0.06);
-    --shadow-card: 0 10px 30px rgba(32, 20, 17, 0.1);
-    --shadow-deep: 0 20px 45px rgba(21, 12, 9, 0.35);
+    --shadow-soft: 0 8px 24px rgba(220, 140, 160, 0.08);
+    --shadow-card: 0 14px 38px rgba(210, 125, 148, 0.12), 0 2px 10px rgba(210, 125, 148, 0.06);
+    --shadow-hover: 0 20px 45px rgba(210, 125, 148, 0.18);
 
-    --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base Reset & Mobile Viewport */
+/* Base Reset & Mobile Screen Fit */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -46,20 +51,20 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    background-color: var(--espresso-dark);
+    background-color: var(--bg-cream);
 }
 
 body {
-    background-color: var(--espresso-dark);
-    color: var(--text-dark);
-    font-family: var(--font-sans);
-    line-height: 1.6;
+    background-color: var(--bg-cream);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.65;
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
 }
 
-/* Background Canvases */
+/* Floating Canvases for Hearts & Flower Petals */
 #petals-canvas,
 #confetti-canvas {
     position: fixed;
@@ -71,22 +76,56 @@ body {
     z-index: 9999;
 }
 
-/* Floating Discreet Audio Pill */
+/* ==========================================================================
+   PINTEREST WASHI TAPE & STICKER ELEMENTS
+   ========================================================================== */
+.washi-tape {
+    position: absolute;
+    width: 105px;
+    height: 26px;
+    background: rgba(248, 208, 218, 0.75);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.washi-tape.top-center {
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1.5deg);
+}
+
+.washi-tape.top-left-tape {
+    top: -10px;
+    left: 18px;
+    transform: rotate(-4deg);
+}
+
+.washi-tape.top-right-tape {
+    top: -10px;
+    right: 18px;
+    transform: rotate(3deg);
+}
+
+/* ==========================================================================
+   FLOATING DISCREET AUDIO PILL (PINTEREST STYLE)
+   ========================================================================== */
 .floating-audio-pill {
     position: fixed;
     top: 1rem;
     right: 1rem;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(216, 180, 88, 0.3);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(242, 155, 176, 0.4);
     border-radius: var(--radius-full);
-    padding: 0.4rem 0.85rem 0.4rem 0.45rem;
+    padding: 0.42rem 0.95rem 0.42rem 0.5rem;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+    gap: 0.55rem;
+    box-shadow: var(--shadow-card);
+    transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
 }
 
 .floating-audio-pill.hidden {
@@ -105,22 +144,22 @@ body {
     padding: 0;
 }
 
-.audio-flower-spin {
-    font-size: 1rem;
+.audio-heart-spin {
+    font-size: 1.05rem;
     display: inline-block;
-    animation: spinSlow 8s linear infinite;
+    animation: pulseSoft 2s infinite ease-in-out;
 }
 
 .audio-wave {
     display: flex;
     align-items: flex-end;
-    gap: 2px;
+    gap: 2.5px;
     height: 14px;
 }
 
 .audio-wave .bar {
     width: 3px;
-    background: var(--rose-primary);
+    background: var(--pink-primary);
     border-radius: 2px;
     height: 4px;
     animation: soundWave 1.2s ease-in-out infinite alternate;
@@ -130,13 +169,31 @@ body {
 .audio-wave .bar-3 { animation-delay: 0.4s; }
 
 .audio-track-label {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    color: var(--text-dark);
-    letter-spacing: 0.02em;
+    color: var(--text-primary);
 }
 
-/* Common Chapter Container Layout */
+/* ==========================================================================
+   MOTION ON SCROLL (PROFESSIONAL MOTION SYSTEM)
+   ========================================================================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    transition: opacity 0.85s var(--ease-spring), transform 0.85s var(--ease-spring);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.reveal-on-scroll.delay-1 { transition-delay: 0.15s; }
+.reveal-on-scroll.delay-2 { transition-delay: 0.3s; }
+.reveal-on-scroll.delay-3 { transition-delay: 0.45s; }
+
+/* Common Chapter Layout */
 .chapter {
     min-height: 100vh;
     min-height: 100dvh;
@@ -146,9 +203,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1.25rem;
+    padding: 3rem 1.25rem 4rem;
     overflow: hidden;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    background: var(--bg-cream);
 }
 
 .hidden-chapter {
@@ -158,69 +215,76 @@ body {
 .chapter-header {
     text-align: center;
     max-width: 480px;
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
 }
 
 .chapter-tag {
     display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold-accent);
-    margin-bottom: 0.5rem;
+    color: var(--pink-deep);
+    background: var(--bg-blush-soft);
+    border: 1px solid var(--border-soft);
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.75rem;
 }
 
 .chapter-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: clamp(2rem, 6.5vw, 2.75rem);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.22;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
 .chapter-subtitle {
     font-size: 0.95rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
-/* Primary Action Buttons */
-.btn-next-chapter {
+/* Pinterest Cute Pill Button */
+.btn-pinterest-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: var(--cream-card);
-    border: 1px solid rgba(216, 180, 88, 0.35);
-    color: var(--text-dark);
-    padding: 0.85rem 1.75rem;
+    gap: 0.55rem;
+    background: var(--bg-surface);
+    border: 1px solid rgba(242, 155, 176, 0.4);
+    color: var(--pink-deep);
+    padding: 0.9rem 2rem;
     border-radius: var(--radius-full);
+    font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-card);
     margin-top: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s var(--ease-spring);
     user-select: none;
+    text-decoration: none;
 }
 
-.btn-next-chapter:active {
-    transform: scale(0.96);
-    background: var(--rose-soft);
+.btn-pinterest-pill:hover,
+.btn-pinterest-pill:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    background: var(--pink-pastel);
 }
 
-.btn-next-chapter .btn-arrow {
+.btn-pinterest-pill .btn-arrow {
     display: inline-block;
     animation: gentleBounce 2s infinite ease-in-out;
 }
 
 /* ==========================================================================
-   CHAPTER 1: THE INTIMATE PROLOGUE
+   CHAPTER 1: THE INTIMATE PROLOGUE (LIGHT PASTEL PINK)
    ========================================================================== */
 .prologue-chapter {
-    background: radial-gradient(circle at center, #261611 0%, #150C09 100%);
-    color: var(--text-light);
+    background: radial-gradient(circle at center, #FFF4F7 0%, #FFF8FA 60%, #FDF0F4 100%);
     text-align: center;
 }
 
@@ -232,33 +296,50 @@ body {
     gap: 2.25rem;
 }
 
-.prologue-flower-icon {
-    width: 64px;
-    height: 64px;
-    color: var(--gold-accent);
-    opacity: 0.85;
-    animation: pulseSoft 4s ease-in-out infinite alternate;
+.prologue-heart-wrapper {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.botanical-svg {
-    width: 100%;
-    height: 100%;
+.heart-pulse-glow {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242, 155, 176, 0.4) 0%, transparent 70%);
+    animation: pulseSoft 3s ease-in-out infinite alternate;
 }
+
+.prologue-main-heart {
+    font-size: 3.2rem;
+    animation: heartBeat 2s infinite ease-in-out;
+    filter: drop-shadow(0 4px 15px rgba(242, 155, 176, 0.5));
+}
+
+.sparkle-orbit {
+    position: absolute;
+    font-size: 1.3rem;
+}
+.sparkle-orbit.s1 { top: -2px; right: -6px; animation: floatParticle 3s infinite alternate ease-in-out; }
+.sparkle-orbit.s2 { bottom: 0; left: -8px; animation: floatParticle 3.5s infinite alternate-reverse ease-in-out; }
 
 .whisper-sequence {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1.15rem;
 }
 
 .whisper-line {
-    font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 5vw, 1.85rem);
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 4.8vw, 1.75rem);
     font-style: italic;
-    color: #FAF4EE;
+    color: var(--text-primary);
     opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
+    transform: translateY(14px);
+    transition: opacity 1.2s var(--ease-spring), transform 1.2s var(--ease-spring);
 }
 
 .whisper-line.revealed {
@@ -268,8 +349,8 @@ body {
 
 .touch-interactive-box {
     opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+    transform: scale(0.92);
+    transition: opacity 1.5s var(--ease-spring) 0.4s, transform 1.5s var(--ease-spring) 0.4s;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -299,22 +380,28 @@ body {
     position: absolute;
     inset: -6px;
     border-radius: 50%;
-    border: 2px dashed rgba(216, 180, 88, 0.45);
+    border: 2px dashed rgba(242, 155, 176, 0.5);
     animation: spinSlow 20s linear infinite;
+}
+
+.touch-ripple.r2 {
+    inset: -14px;
+    border: 1px solid rgba(242, 155, 176, 0.25);
+    animation: spinSlow 35s linear infinite reverse;
 }
 
 .touch-inner {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(229, 139, 158, 0.3) 0%, rgba(216, 180, 88, 0.15) 100%);
-    border: 1.5px solid rgba(216, 180, 88, 0.6);
+    background: radial-gradient(circle, #FFFFFF 0%, #FFF0F4 100%);
+    border: 2px solid rgba(242, 155, 176, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 0 25px rgba(229, 139, 158, 0.4);
-    animation: heartPulse 1.8s ease-in-out infinite;
+    font-size: 2.2rem;
+    box-shadow: 0 8px 24px rgba(242, 155, 176, 0.35);
+    animation: pulseSoft 2s ease-in-out infinite;
     transition: transform 0.2s ease;
 }
 
@@ -324,30 +411,46 @@ body {
 
 .touch-prompt-text {
     font-size: 0.95rem;
-    color: #C2B3AE;
-    line-height: 1.5;
+    color: var(--text-secondary);
+    line-height: 1.55;
 }
 
 .touch-highlight {
-    color: var(--rose-soft);
-    font-weight: 600;
+    color: var(--pink-deep);
+    font-weight: 700;
 }
 
 /* ==========================================================================
-   CHAPTER 2: THE MELODY & YOU (HERO SECTION)
+   CHAPTER 2: THE MELODY & YOU (PINTEREST HERO CARD)
    ========================================================================== */
 .hero-chapter {
-    background-color: var(--espresso-dark);
-    padding: 0;
-    color: var(--text-light);
-    justify-content: flex-end;
+    background: var(--bg-cream);
+    padding: 2rem 1.25rem 4rem;
 }
 
-.hero-photo-container {
-    position: absolute;
-    inset: 0;
+.hero-card-frame {
+    position: relative;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-soft);
+    padding: 1.75rem 1.5rem 2rem;
+    max-width: 440px;
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-photo-wrapper {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-soft);
 }
 
 .hero-photo {
@@ -358,124 +461,115 @@ body {
     animation: kenBurnsZoom 18s ease-in-out infinite alternate;
 }
 
-.hero-vignette-overlay {
+.hero-photo-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(21, 12, 9, 0.35) 0%,
-        rgba(21, 12, 9, 0.2) 30%,
-        rgba(21, 12, 9, 0.75) 70%,
-        rgba(21, 12, 9, 0.96) 100%
-    );
+    background: linear-gradient(180deg, transparent 65%, rgba(56, 34, 41, 0.4) 100%);
 }
 
-.floral-corner {
+.hero-stamp-badge {
     position: absolute;
-    font-size: 2rem;
-    opacity: 0.6;
-    z-index: 3;
-    pointer-events: none;
-}
-.floral-corner.top-left { top: 1.5rem; left: 1.5rem; }
-.floral-corner.bottom-right { bottom: 1.5rem; right: 1.5rem; }
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 1.5rem 3.5rem;
-    max-width: 500px;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px dashed var(--pink-primary);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--pink-deep);
+    letter-spacing: 0.05em;
 }
 
-.hero-date-badge {
+.hero-pill-badge {
     display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    color: var(--gold-accent);
-    margin-bottom: 0.75rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--pink-deep);
+    background: var(--bg-blush-soft);
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.6rem;
 }
 
 .hero-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 8vw, 3.8rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 7vw, 3rem);
     font-weight: 700;
-    line-height: 1.1;
-    color: #FFFFFF;
-    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
 }
 
 .hero-for-name {
     font-family: var(--font-hand);
-    font-size: clamp(2.2rem, 6vw, 3rem);
-    color: var(--rose-soft);
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.2rem, 6vw, 2.8rem);
+    color: var(--pink-deep);
+    margin-bottom: 1.25rem;
 }
 
 .hero-lyrics-quote {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(216, 180, 88, 0.25);
-    border-radius: var(--radius-md);
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1rem;
+    background: var(--bg-blush-card);
+    border-left: 3px solid var(--pink-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .lyrics-line {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-style: italic;
-    font-size: 1.1rem;
-    color: #FAF4EE;
+    font-size: 1rem;
+    color: var(--text-primary);
     line-height: 1.5;
 }
 
 .lyrics-author {
     display: block;
     font-size: 0.75rem;
-    color: var(--gold-accent);
-    margin-top: 0.5rem;
-    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--pink-deep);
+    margin-top: 0.4rem;
 }
 
 /* ==========================================================================
-   CHAPTER 3: LITTLE POLAROID MOMENTS (STACKED CARDS)
+   CHAPTER 3: LITTLE POLAROID MOMENTS (PINTEREST SCRAPBOOK BALANCED SPACING)
    ========================================================================== */
-.polaroid-chapter {
-    background: var(--cream-base);
-}
-
 .polaroid-deck-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
 }
 
 .polaroid-stack {
     position: relative;
-    width: 290px;
-    height: 380px;
+    width: 310px;
+    height: 420px;
     margin: 1rem auto;
     perspective: 1000px;
 }
 
+/* Polaroid Card with Washi Tape and Natural Elevated Spacing */
 .polaroid-card {
     position: absolute;
     inset: 0;
-    background: var(--cream-card);
-    border-radius: 6px;
-    padding: 14px 14px 50px 14px;
-    box-shadow: 0 10px 30px rgba(32, 20, 17, 0.12), 0 2px 8px rgba(32, 20, 17, 0.06);
-    border: 1px solid rgba(216, 180, 88, 0.2);
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 14px 14px 18px 14px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(242, 180, 195, 0.4);
     cursor: pointer;
     user-select: none;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    transition: transform 0.5s var(--ease-spring), opacity 0.4s ease;
     transform-origin: bottom center;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Stacked Visual Depth */
 .polaroid-card:nth-child(1) { transform: rotate(-2deg) translateY(0); z-index: 5; }
 .polaroid-card:nth-child(2) { transform: rotate(2.5deg) translateY(6px); z-index: 4; }
 .polaroid-card:nth-child(3) { transform: rotate(-1.5deg) translateY(12px); z-index: 3; }
@@ -483,16 +577,16 @@ body {
 .polaroid-card:nth-child(5) { transform: rotate(-0.5deg) translateY(24px); z-index: 1; }
 
 .polaroid-card.swiped-away {
-    transform: translateX(120%) rotate(20deg) scale(0.9) !important;
+    transform: translateX(125%) rotate(18deg) scale(0.9) !important;
     opacity: 0;
     pointer-events: none;
 }
 
 .polaroid-photo-frame {
     width: 100%;
-    height: 260px;
-    background: #EFE8DF;
-    border-radius: 4px;
+    height: 310px;
+    background: #F8ECEE;
+    border-radius: 6px;
     overflow: hidden;
 }
 
@@ -502,224 +596,188 @@ body {
     object-fit: cover;
 }
 
+/* FIXED & ELEVATED POLAROID CAPTION: Properly centered vertically in white space */
 .polaroid-caption-box {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
+    margin-top: 14px;
+    margin-bottom: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+    min-height: 48px;
+    padding: 0 0.5rem;
 }
 
 .polaroid-caption-text {
     font-family: var(--font-hand);
-    font-size: 1.15rem;
-    color: var(--text-dark);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.35;
 }
 
 .polaroid-controls {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
 }
 
 .polaroid-counter {
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--rose-deep);
+    font-weight: 700;
+    color: var(--pink-deep);
 }
 
 .polaroid-tip {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
     margin-top: 0.2rem;
 }
 
 /* ==========================================================================
-   CHAPTER 4: THINGS I ADORE
+   CHAPTER 4: THINGS I ADORE (PINTEREST PASTEL CARDS)
    ========================================================================== */
-.adore-chapter {
-    background: #FFFDF9;
-}
-
 .adore-cards-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.15rem;
     width: 100%;
     max-width: 440px;
 }
 
 .adore-card {
-    background: #FFFFFF;
+    background: var(--bg-surface);
     border-radius: var(--radius-md);
-    padding: 1.25rem 1.5rem;
-    border: 1px solid rgba(216, 180, 88, 0.22);
-    box-shadow: var(--shadow-soft);
+    padding: 1.4rem 1.6rem;
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
     display: flex;
-    gap: 1rem;
+    gap: 1.1rem;
     align-items: flex-start;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
 }
 
+.adore-card:hover,
 .adore-card:active {
-    transform: scale(0.98);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .adore-flower-badge {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     line-height: 1;
-    margin-top: 0.2rem;
-}
-
-.adore-content-box {
-    flex: 1;
+    margin-top: 0.15rem;
 }
 
 .adore-title {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-dark);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 0.25rem;
 }
 
 .adore-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.55;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 /* ==========================================================================
-   CHAPTER 5: THE 23RD CANDLE & WISH
+   CHAPTER 5: THE 23RD CAKE & WISH (KOREAN AESTHETIC CAKE)
    ========================================================================== */
-.candle-chapter {
-    background: radial-gradient(circle at center, #261611 0%, #150C09 100%);
-    color: var(--text-light);
-    text-align: center;
+.aesthetic-cake-card {
+    position: relative;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-soft);
+    padding: 1rem;
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 2rem;
 }
 
-.candle-chapter .chapter-title {
-    color: #FFFFFF;
+.cake-image-viewport {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FDF1F4;
+    box-shadow: var(--shadow-soft);
 }
 
-.candle-ambient-glow {
+.cake-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Interactive Glowing Candle Flames overlaid on cake candles */
+.interactive-cake-flames {
     position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(216, 180, 88, 0.15) 0%, transparent 70%);
+    inset: 0;
     pointer-events: none;
 }
 
-.candle-stage {
-    position: relative;
-    margin: 1.5rem auto 2.5rem;
-}
-
-.floral-wreath {
-    display: flex;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.6rem;
-    animation: gentleWiggle 4s ease-in-out infinite alternate;
-}
-
-.number-age-display {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-}
-
-.age-digit {
-    font-family: var(--font-serif);
-    font-size: clamp(5.5rem, 18vw, 7.5rem);
-    font-weight: 700;
-    color: var(--rose-soft);
-    line-height: 1;
-    user-select: none;
-}
-
-/* Single Magical Candle */
-.single-magical-candle {
-    position: relative;
+.candle-flame-wrapper {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 18px;
-    height: 90px;
-    margin: 0 4px;
 }
 
+/* Positioning flames atop Korean cake candles */
+.flame-pos-1 { top: 12%; left: 47%; }
+.flame-pos-2 { top: 14%; left: 40%; }
+.flame-pos-3 { top: 15%; left: 54%; }
+
 .candle-flame {
-    position: absolute;
-    top: -24px;
-    width: 18px;
-    height: 28px;
+    width: 14px;
+    height: 22px;
     background: radial-gradient(ellipse at bottom, #FFFB8F 0%, #FFA726 60%, #FF3D00 100%);
     border-radius: 50% 50% 35% 35%;
-    box-shadow: 0 0 14px #FFA726, 0 0 30px #FFD54F;
-    animation: flameDance 1.3s infinite ease-in-out alternate;
+    box-shadow: 0 0 16px #FFA726, 0 0 28px #FFD54F;
+    animation: flameDance 1.2s infinite ease-in-out alternate;
     transform-origin: bottom center;
 }
 
-.flame-core {
+.flame-glow {
     position: absolute;
-    bottom: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 10px;
-    background: #FFFFFF;
+    top: -10px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, transparent 70%);
 }
 
-.candle-flame.extinguished {
+.candle-flame-wrapper.extinguished .candle-flame,
+.candle-flame-wrapper.extinguished .flame-glow {
     display: none;
 }
 
-.candle-smoke-rise {
+.smoke-puff-cake {
     position: absolute;
-    top: -25px;
-    width: 10px;
-    height: 10px;
-    background: rgba(220, 210, 205, 0.6);
+    top: -15px;
+    width: 12px;
+    height: 12px;
+    background: rgba(180, 160, 165, 0.65);
     border-radius: 50%;
     filter: blur(3px);
     animation: smokeFloatUp 2s forwards ease-out;
 }
 
-.candle-wick {
-    width: 2px;
-    height: 10px;
-    background: #2B211E;
+.cake-label-box {
+    text-align: center;
+    margin-top: 0.85rem;
 }
 
-.candle-stem {
-    width: 10px;
-    height: 70px;
-    background: repeating-linear-gradient(
-        45deg,
-        #FFFFFF,
-        #FFFFFF 4px,
-        var(--rose-soft) 4px,
-        var(--rose-soft) 8px
-    );
-    border-radius: 4px;
-}
-
-.candle-caption {
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    color: var(--gold-accent);
-    text-transform: uppercase;
-    margin-top: 0.5rem;
+.cake-tag-pill {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--pink-deep);
 }
 
 /* Blow Action Controls */
@@ -728,18 +786,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.2rem;
 }
 
 .mic-status-label {
-    font-size: 0.9rem;
-    color: #C7B8B3;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    text-align: center;
 }
 
 .mic-gauge-bar {
     width: 180px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.15);
+    height: 8px;
+    background: rgba(242, 155, 176, 0.2);
     border-radius: var(--radius-full);
     overflow: hidden;
 }
@@ -760,16 +819,16 @@ body {
 }
 
 .btn-romantic-action {
-    background: linear-gradient(135deg, var(--rose-primary) 0%, var(--rose-deep) 100%);
+    background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-deep) 100%);
     color: #FFFFFF;
     border: none;
     padding: 0.95rem 1.8rem;
     border-radius: var(--radius-full);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(229, 139, 158, 0.35);
-    transition: transform 0.2s ease;
+    box-shadow: 0 8px 24px rgba(216, 107, 132, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-romantic-action:active {
@@ -777,59 +836,61 @@ body {
 }
 
 .btn-romantic-secondary {
-    background: transparent;
-    color: #FAF4EE;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75rem 1.5rem;
+    background: #FFFFFF;
+    color: var(--text-primary);
+    border: 1px solid var(--border-soft);
+    padding: 0.85rem 1.6rem;
     border-radius: var(--radius-full);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 600;
     cursor: pointer;
+    box-shadow: var(--shadow-soft);
 }
 
-/* Success Wish Reveal */
+/* Success Wish Card */
 .wish-success-box {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(216, 180, 88, 0.35);
+    background: #FFFFFF;
+    border: 1.5px solid var(--pink-primary);
     border-radius: var(--radius-lg);
-    padding: 2rem 1.75rem;
+    padding: 2.25rem 1.75rem;
     max-width: 440px;
     margin-top: 1rem;
+    box-shadow: var(--shadow-hover);
+    text-align: center;
     animation: zoomFadeIn 0.8s ease forwards;
 }
 
 .wish-flower-burst {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     margin-bottom: 0.5rem;
 }
 
 .wish-congrats-title {
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
-    color: var(--rose-soft);
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    color: var(--pink-deep);
     margin-bottom: 0.75rem;
 }
 
 .wish-text-content p {
     font-size: 1.05rem;
-    line-height: 1.7;
-    color: #FAF4EE;
+    line-height: 1.75;
+    color: var(--text-primary);
 }
 
 /* ==========================================================================
    CHAPTER 6: THE GOLDEN ENVELOPE & FINAL LETTER
    ========================================================================== */
 .letter-chapter {
-    background: var(--cream-base);
-    min-height: 100vh;
-    padding-bottom: 4rem;
+    background: var(--bg-cream);
+    padding-bottom: 5rem;
 }
 
 .envelope-scene {
     position: relative;
     max-width: 480px;
     width: 100%;
-    margin: 1rem auto 2rem;
+    margin: 1rem auto 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -837,17 +898,18 @@ body {
 
 .botanical-envelope {
     position: relative;
-    width: 280px;
-    height: 190px;
-    background: #E8DDD4;
-    border-radius: var(--radius-sm);
+    width: 290px;
+    height: 195px;
+    background: #FDF1F4;
+    border-radius: 8px;
     box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-soft);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s var(--ease-spring);
 }
 
 .botanical-envelope:active {
@@ -860,11 +922,11 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 140px solid transparent;
-    border-right: 140px solid transparent;
-    border-top: 95px solid #D5C7BB;
+    border-left: 145px solid transparent;
+    border-right: 145px solid transparent;
+    border-top: 98px solid #F5DDE3;
     transform-origin: top;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.6s var(--ease-spring);
     z-index: 3;
 }
 
@@ -875,37 +937,38 @@ body {
 .floral-wax-seal {
     position: absolute;
     top: 75px;
-    width: 48px;
-    height: 48px;
-    background: radial-gradient(circle, #D4667B 0%, #A33F53 100%);
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle, #F29BB0 0%, #D86B84 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
-    box-shadow: 0 4px 12px rgba(163, 63, 83, 0.4);
+    font-size: 1.5rem;
+    box-shadow: 0 6px 16px rgba(216, 107, 132, 0.4);
     z-index: 4;
 }
 
 .envelope-tap-prompt {
     position: absolute;
     bottom: 1.25rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--pink-deep);
     z-index: 2;
 }
 
-/* Unfolded Letter Paper */
+/* Unfolded Letter Paper with Scrapbook Feel */
 .unfolded-letter-paper {
     display: none;
-    background: var(--cream-card);
-    border: 1px solid rgba(216, 180, 88, 0.25);
+    background: #FFFFFF;
+    border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    padding: clamp(1.75rem, 5vw, 2.75rem);
-    box-shadow: var(--shadow-deep);
+    padding: clamp(2rem, 5vw, 2.75rem);
+    box-shadow: var(--shadow-hover);
     width: 100%;
     max-width: 480px;
+    position: relative;
     animation: zoomFadeIn 0.8s ease forwards;
 }
 
@@ -917,7 +980,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(216, 180, 88, 0.2);
+    border-bottom: 1px solid var(--border-soft);
     padding-bottom: 0.85rem;
     margin-bottom: 1.5rem;
 }
@@ -925,59 +988,61 @@ body {
 .letter-paper-date {
     font-size: 0.85rem;
     font-style: italic;
-    color: var(--gold-accent);
+    color: var(--pink-deep);
+    font-weight: 600;
 }
 
 .letter-opening-greet {
     font-family: var(--font-hand);
     font-size: 2.2rem;
-    color: var(--rose-deep);
+    color: var(--pink-deep);
     line-height: 1;
     margin-bottom: 1rem;
 }
 
 .letter-paper-body p {
-    font-size: 1rem;
-    color: var(--text-dark);
+    font-size: 1.02rem;
+    color: var(--text-primary);
     line-height: 1.8;
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.25rem;
 }
 
 .letter-paper-signoff {
-    margin-top: 2rem;
+    margin-top: 2.25rem;
     text-align: right;
-    border-top: 1px solid rgba(216, 180, 88, 0.2);
+    border-top: 1px solid var(--border-soft);
     padding-top: 1.25rem;
 }
 
 .sign-from {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 .sign-author {
     font-family: var(--font-hand);
-    font-size: 2.3rem;
-    color: var(--text-dark);
+    font-size: 2.4rem;
+    color: var(--text-primary);
     line-height: 1;
     margin-top: 0.2rem;
 }
 
 .sign-date {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    color: var(--gold-accent);
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+    color: var(--pink-deep);
     display: block;
     margin-top: 0.5rem;
+    font-weight: 600;
 }
 
 /* Footer Minimalist */
 .cinematic-footer {
-    margin-top: 3rem;
+    margin-top: 3.5rem;
     text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -988,7 +1053,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: transform 0.2s ease;
     padding: 0;
 }
@@ -1013,25 +1078,25 @@ body {
 .easter-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(21, 12, 9, 0.85);
+    background: rgba(56, 34, 41, 0.45);
     backdrop-filter: blur(8px);
 }
 
 .easter-modal-card {
     position: relative;
     z-index: 2;
-    background: var(--cream-card);
+    background: #FFFFFF;
     border-radius: var(--radius-lg);
-    padding: 2.25rem 1.75rem;
+    padding: 2.5rem 2rem;
     max-width: 400px;
     width: 100%;
     text-align: center;
-    box-shadow: var(--shadow-deep);
-    border: 1px solid rgba(216, 180, 88, 0.3);
+    box-shadow: var(--shadow-hover);
+    border: 1.5px solid var(--pink-primary);
 }
 
 .easter-flower-anim {
-    font-size: 3rem;
+    font-size: 3.2rem;
     display: block;
     margin-bottom: 0.5rem;
     animation: gentleWiggle 3s infinite;
@@ -1039,22 +1104,27 @@ body {
 
 .easter-quote {
     font-family: var(--font-hand);
-    font-size: 1.6rem;
-    color: var(--rose-deep);
+    font-size: 1.65rem;
+    color: var(--pink-deep);
     line-height: 1.4;
     margin: 1rem 0 0.5rem;
 }
 
 .easter-note {
     font-size: 0.95rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 1.75rem;
 }
 
 /* Keyframe Animations */
-@keyframes heartPulse {
+@keyframes heartBeat {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.12); }
+    50% { transform: scale(1.15); }
+}
+
+@keyframes pulseSoft {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
 }
 
 @keyframes spinSlow {
@@ -1075,7 +1145,7 @@ body {
 
 @keyframes kenBurnsZoom {
     0% { transform: scale(1); }
-    100% { transform: scale(1.12); }
+    100% { transform: scale(1.1); }
 }
 
 @keyframes gentleBounce {
@@ -1096,6 +1166,11 @@ body {
 @keyframes soundWave {
     0% { height: 4px; }
     100% { height: 14px; }
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
 }
 
 .hidden {
