@@ -1,707 +1,606 @@
 /**
  * ==========================================================================
- * ROMANTIC CINEMATIC STORYBOOK — SCRIPT.JS
- * 6-Chapter Birthday Experience  |  Mobile-First
- *
- * ============================================================
- * CONFIG — Ubah isi di bawah ini sesuai data pribadi Anda
- * ============================================================
+ * MASTER SCRIPT — ROMANTIC FLORAL STORYBOOK (6 CHAPTERS MOBILE-FIRST)
+ * ==========================================================================
+ * Musik: Sal Priadi — Serta Mulia (Mulai tepat pada detik ke-44 / Reff)
  */
-const CONFIG = {
-    // Nama & Panggilan
+
+// ==========================================================================
+// 1. CONFIGURATION PANEL (DATA UTAMA WEBSITE)
+// ==========================================================================
+const birthdayConfig = {
+    partnerName: "[NAMA PACAR]",
     partnerNickname: "[PANGGILAN PACAR]",
     yourName: "[NAMA SAYA]",
-
-    // Audio — mulai dari detik reff (0.44 detik)
+    birthdayDate: "6 Oktober 2026",
+    
+    // File Musik & Titik Awal Reff (Detik ke-44)
     musicSrc: "assets/music/Serta Mulia-Sal Priadi (Lyrics).mp3",
-    musicStartTime: 0.44,
-
-    // Hero Photo
+    reffStartTime: 44, // 0:44 detik
+    
+    // Foto Utama (Hero)
     heroPhoto: "assets/photos/hero.jpg",
 
-    // Polaroid Memories (6 foto + caption)
+    // Chapter 3: 5 Momen Polaroid Paling Berkesan
     memories: [
         {
             image: "assets/photos/photo-01.jpg",
-            caption: "Awal dari cerita yang paling kusyukuri ✨"
+            caption: "Awal mula cerita manis yang selalu kusyukuri 🌸"
         },
         {
             image: "assets/photos/photo-02.jpg",
-            caption: "Waktu terasa berhenti di sisimu ☕"
+            caption: "Secangkir kopi & tawamu yang tak pernah bosan kudengar ☕"
         },
         {
             image: "assets/photos/photo-03.jpg",
-            caption: "Senyummu, pemandangan terindah hariku 🌅"
+            caption: "Senja terasa jauh lebih indah saat berdampingan denganmu 🌅"
         },
         {
             image: "assets/photos/photo-04.jpg",
-            caption: "Tersesat pun menyenangkan bersamamu 🗺️"
+            caption: "Langkah-langkah kecil kita menjelajah dunia berdua 🌿"
         },
         {
             image: "assets/photos/photo-05.jpg",
-            caption: "Tawa paling jujur yang pernah kudengar 😊"
-        },
-        {
-            image: "assets/photos/photo-06.jpg",
-            caption: "Diam bersamamu sudah lebih dari cukup 🌸"
+            caption: "Dan hari ini, merayakan senyum manismu di usia ke-23 ❤️"
         }
     ],
 
-    // Hal yang Disukai (6 item — padat dan tulus)
-    adoreList: [
+    // Chapter 4: 4 Hal yang Paling Dikagumi (Ringkas & Puitis)
+    adores: [
         {
-            title: "Senyum manismu",
-            desc: "Entah mantra apa, senyummu selalu berhasil membuat hari yang paling berat terasa ringan."
+            flower: "🌸",
+            title: "Ketulusan Hatimu",
+            desc: "Caramu menyayangi orang di sekitarmu dengan kelembutan yang selalu menenangkan jiwaku."
         },
         {
-            title: "Caramu bercerita",
-            desc: "Bahkan hal random sekalipun, cara berceritamu dengan mata berbinar selalu membuatku betah."
+            flower: "🌷",
+            title: "Tawa Manismu",
+            desc: "Suara tawamu adalah melodi paling jujur yang selalu berhasil menghapus segala rasa lelahku."
         },
         {
-            title: "Ketulusan hatimu",
-            desc: "Caramu peduli pada orang sekitar, selalu membuatku merasa beruntung bisa berada di dekatmu."
+            flower: "🌹",
+            title: "Caramu Menatap Dunia",
+            desc: "Matamu yang selalu berbinar penuh semangat saat membicarakan mimpi-mimpi besarmu."
         },
         {
-            title: "Tawa lepasmu",
-            desc: "Suara tawamu adalah melodi paling jujur yang selalu ingin kudengar berulang kali."
-        },
-        {
-            title: "Kegigihanmu",
-            desc: "Semangatmu mengejar mimpi-mimpimu selalu membuatku kagum dan bangga mendampingimu."
-        },
-        {
-            title: "Bahwa kamu ada",
-            desc: "Di antara semua hal yang terjadi di hidupku, kehadiranmu adalah salah satu yang paling kusyukuri."
+            flower: "💐",
+            title: "Kehadiranmu",
+            desc: "Bahwa dari miliaran manusia di bumi, bersamamu adalah tempat terbaik untuk pulang."
         }
     ],
 
-    // Doa (bisa diganti sepenuhnya)
-    doaLines: [
-        "Semoga setiap langkahmu di usia 23 ini dipenuhi hal-hal baik yang belum pernah kamu bayangkan.",
-        "Semoga semua yang kamu perjuangkan diam-diam perlahan menemukan jalannya.",
-        "Semoga kamu senantiasa dianugerahi kesehatan, ketenangan hati, dan dikelilingi orang-orang yang tulus.",
-        "Dan semoga... aku masih diberi kesempatan untuk menyaksikanmu tumbuh, mekar, dan berbahagia."
-    ],
-
-    // Surat Penutup
-    letter: {
-        salutation: "Sayang,",
-        paragraphs: [
-            "Selamat ulang tahun yang ke-23.",
-            "Aku mungkin tidak selalu pandai merangkai kata, tapi hari ini aku ingin kamu tahu betapa bersyukurnya aku karena kamu ada dalam hidupku.",
-            // Tambahkan pesan pribadimu di bawah ini:
-            "[ISI PESAN PRIBADIMU DI SINI]",
-            "Semoga di usia barumu ini, semua yang kamu impikan perlahan menjadi kenyataan. Dan kalau boleh, aku ingin tetap ada di sampingmu menyaksikan semuanya terjadi."
-        ],
-        sign: "Selalu menyayangimu,"
-    }
+    // Chapter 5: Doa Ulang Tahun ke-23
+    wishText: `Semoga di usiamu yang ke-23 ini, hatimu senantiasa dilapangkan, langkahmu selalu dimudahkan, dan senyum manismu selalu mekar indah seperti bunga di musim semi. Aamiin ya Rabbal 'Alamin. ❤️`
 };
 
 // ==========================================================================
-// IMAGE FALLBACK
+// 2. IMAGE FALLBACK HANDLER (GLOBAL)
 // ==========================================================================
-function handleImgFail(el) {
-    const colors = ['#F8D7DA', '#FBDCE4', '#F3E5AB'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    el.style.display = 'none';
-    const parent = el.parentElement;
-    parent.style.background = `linear-gradient(135deg, ${color}, #FAF7F2)`;
-    // Add a flower emoji placeholder
-    const ph = document.createElement('div');
-    ph.style.cssText = 'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;';
-    ph.textContent = '🌸';
-    parent.appendChild(ph);
-}
-window.handleImgFail = handleImgFail;
+window.handleImageFallback = function(imgElement, type = 'general') {
+    const title = type === 'hero' ? 'Happy 23rd Birthday' : 'Sweet Memories';
+    const subtitle = birthdayConfig.partnerNickname || 'Sayangku';
+    
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
+        <defs>
+            <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FCE7EB"/>
+                <stop offset="50%" stop-color="#FAF1E8"/>
+                <stop offset="100%" stop-color="#F2DFD7"/>
+            </linearGradient>
+            <radialGradient id="sun" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#FCE7EB" stop-opacity="0"/>
+            </radialGradient>
+        </defs>
+        <rect width="600" height="750" fill="url(#bgG)"/>
+        <circle cx="300" cy="300" r="200" fill="url(#sun)"/>
+        <g text-anchor="middle" font-family="'Georgia', serif" fill="#3D2924">
+            <text x="300" y="290" font-size="36" font-weight="bold">${title}</text>
+            <text x="300" y="340" font-size="24" font-style="italic" fill="#D8B458">✦ ${subtitle} ✦</text>
+            <text x="300" y="390" font-size="16" font-family="sans-serif" fill="#75625D">Simpan foto di assets/photos</text>
+            <text x="300" y="440" font-size="34">🌸 🌷 🌹</text>
+        </g>
+    </svg>`;
+    
+    imgElement.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+    imgElement.onerror = null;
+};
 
 // ==========================================================================
-// PETAL PARTICLE ENGINE
+// 3. FLOATING PETALS CANVAS (KELOPAK BUNGA BERGUGURAN HALUS)
 // ==========================================================================
-class PetalParticles {
+class FloatingPetalsEngine {
     constructor(canvasId) {
-        this.c = document.getElementById(canvasId);
-        if (!this.c) return;
-        this.x = this.c.getContext('2d');
-        this.particles = [];
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.petals = [];
+        this.maxPetals = 22;
         this.resize();
         window.addEventListener('resize', () => this.resize());
-        this.loop();
+        this.init();
+        this.animate();
     }
 
     resize() {
-        this.w = this.c.width = window.innerWidth;
-        this.h = this.c.height = window.innerHeight;
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
     }
 
-    spawn() {
-        if (this.particles.length >= 22) return;
-        const types = ['🌸', '🌺', '🌷', '✿'];
-        this.particles.push({
-            x: Math.random() * this.w,
-            y: -20,
-            vy: Math.random() * 0.6 + 0.25,
-            vx: (Math.random() - 0.5) * 0.6,
-            rot: Math.random() * 360,
-            rotV: (Math.random() - 0.5) * 1.8,
-            size: Math.random() * 14 + 10,
-            op: Math.random() * 0.45 + 0.15,
-            type: types[Math.floor(Math.random() * types.length)]
-        });
+    init() {
+        this.petals = [];
+        for (let i = 0; i < this.maxPetals; i++) {
+            this.petals.push({
+                x: Math.random() * this.width,
+                y: Math.random() * this.height,
+                size: Math.random() * 12 + 8,
+                speedY: Math.random() * 0.7 + 0.4,
+                speedX: Math.sin(Math.random() * Math.PI) * 0.5,
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 1.2,
+                opacity: Math.random() * 0.45 + 0.25,
+                color: Math.random() > 0.4 ? '#F9D0DA' : '#FCE7EB'
+            });
+        }
     }
 
-    loop() {
-        this.x.clearRect(0, 0, this.w, this.h);
-        if (Math.random() < 0.035) this.spawn();
+    drawPetal(p) {
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate((p.rotation * Math.PI) / 180);
+        this.ctx.fillStyle = p.color;
+        this.ctx.globalAlpha = p.opacity;
+
+        // Elegant curved petal shape
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, 0);
+        this.ctx.quadraticCurveTo(p.size / 2, -p.size, p.size, 0);
+        this.ctx.quadraticCurveTo(p.size / 2, p.size, 0, 0);
+        this.ctx.fill();
+        this.ctx.restore();
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        for (let p of this.petals) {
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += p.rotationSpeed;
+
+            if (p.y > this.height + 20) {
+                p.y = -20;
+                p.x = Math.random() * this.width;
+            }
+            this.drawPetal(p);
+        }
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// ==========================================================================
+// 4. CONFETTI & SPARKS ENGINE
+// ==========================================================================
+class ConfettiEngine {
+    constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.colors = ['#F9D0DA', '#E58B9E', '#D8B458', '#FFFFFF', '#C75B70'];
+        this.isAnimating = false;
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
+    }
+
+    burst(x = window.innerWidth / 2, y = window.innerHeight / 2, count = 70) {
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 9 + 3;
+            this.particles.push({
+                x, y,
+                vx: Math.cos(angle) * velocity,
+                vy: Math.sin(angle) * velocity - Math.random() * 3,
+                size: Math.random() * 7 + 4,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)],
+                opacity: 1,
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10,
+                gravity: 0.2,
+                drag: 0.96
+            });
+        }
+        if (!this.isAnimating) {
+            this.isAnimating = true;
+            this.render();
+        }
+    }
+
+    render() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
 
         for (let i = this.particles.length - 1; i >= 0; i--) {
             const p = this.particles[i];
-            p.y += p.vy;
+            p.vx *= p.drag;
+            p.vy *= p.drag;
+            p.vy += p.gravity;
             p.x += p.vx;
-            p.rot += p.rotV;
+            p.y += p.vy;
+            p.rotation += p.rotationSpeed;
+            p.opacity -= 0.01;
 
-            if (p.y > this.h + 30) {
+            if (p.opacity <= 0 || p.y > this.height) {
                 this.particles.splice(i, 1);
                 continue;
             }
 
-            this.x.save();
-            this.x.globalAlpha = p.op;
-            this.x.font = `${p.size}px serif`;
-            this.x.translate(p.x, p.y);
-            this.x.rotate((p.rot * Math.PI) / 180);
-            this.x.fillText(p.type, -p.size / 2, p.size / 2);
-            this.x.restore();
+            this.ctx.save();
+            this.ctx.translate(p.x, p.y);
+            this.ctx.rotate((p.rotation * Math.PI) / 180);
+            this.ctx.fillStyle = p.color;
+            this.ctx.globalAlpha = p.opacity;
+            this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+            this.ctx.restore();
         }
 
-        requestAnimationFrame(() => this.loop());
-    }
-}
-
-// ==========================================================================
-// CONFETTI ENGINE
-// ==========================================================================
-class Confetti {
-    constructor(canvasId) {
-        this.c = document.getElementById(canvasId);
-        if (!this.c) return;
-        this.x = this.c.getContext('2d');
-        this.particles = [];
-        this.active = false;
-        this.resize();
-        window.addEventListener('resize', () => this.resize());
-    }
-
-    resize() {
-        this.w = this.c.width = window.innerWidth;
-        this.h = this.c.height = window.innerHeight;
-    }
-
-    burst(count = 80) {
-        const ox = this.w / 2, oy = this.h * 0.4;
-        const colors = ['#F8CAD4', '#E88B9E', '#D4AF37', '#FBDCE4', '#FFFDF8'];
-        for (let i = 0; i < count; i++) {
-            const a = Math.random() * Math.PI * 2;
-            const v = Math.random() * 10 + 3;
-            this.particles.push({
-                x: ox, y: oy,
-                vx: Math.cos(a) * v,
-                vy: Math.sin(a) * v - Math.random() * 4,
-                size: Math.random() * 7 + 3,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                op: 1, drag: 0.96, gravity: 0.22,
-                rot: Math.random() * 360, rotV: (Math.random() - 0.5) * 10
-            });
-        }
-        if (!this.active) { this.active = true; this.render(); }
-    }
-
-    render() {
-        this.x.clearRect(0, 0, this.w, this.h);
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-            const p = this.particles[i];
-            p.vx *= p.drag; p.vy *= p.drag;
-            p.vy += p.gravity;
-            p.x += p.vx; p.y += p.vy;
-            p.rot += p.rotV; p.op -= 0.009;
-            if (p.op <= 0 || p.y > this.h) { this.particles.splice(i, 1); continue; }
-            this.x.save();
-            this.x.globalAlpha = p.op;
-            this.x.fillStyle = p.color;
-            this.x.translate(p.x, p.y);
-            this.x.rotate((p.rot * Math.PI) / 180);
-            this.x.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
-            this.x.restore();
-        }
-        if (this.particles.length > 0) requestAnimationFrame(() => this.render());
-        else this.active = false;
-    }
-}
-
-// ==========================================================================
-// MUSIC CONTROLLER
-// ==========================================================================
-class MusicController {
-    constructor() {
-        this.audio = document.getElementById('bg-audio');
-        this.btn = document.getElementById('music-toggle');
-        this.disc = document.getElementById('disc');
-        this.playing = false;
-        this.started = false;
-
-        if (this.audio && CONFIG.musicSrc) {
-            this.audio.src = CONFIG.musicSrc;
-            this.audio.loop = true;
-        }
-
-        if (this.btn) {
-            this.btn.addEventListener('click', () => this.toggle());
-        }
-    }
-
-    start() {
-        if (this.started) return;
-        this.started = true;
-        if (!this.audio) return;
-
-        this.audio.currentTime = CONFIG.musicStartTime;
-        this.audio.volume = 0;
-
-        const playPromise = this.audio.play();
-        if (playPromise) {
-            playPromise.then(() => {
-                this.playing = true;
-                this.fadeIn();
-                this.disc?.classList.add('spinning');
-                // Show music player
-                document.getElementById('music-player')?.classList.remove('hidden');
-            }).catch(() => {
-                // Autoplay blocked — user already interacted so retry once
-                setTimeout(() => {
-                    this.audio.play().then(() => {
-                        this.playing = true;
-                        this.fadeIn();
-                        this.disc?.classList.add('spinning');
-                        document.getElementById('music-player')?.classList.remove('hidden');
-                    }).catch(() => {});
-                }, 200);
-            });
-        }
-    }
-
-    fadeIn(duration = 2500) {
-        const step = 0.05 / (duration / 100);
-        const fade = setInterval(() => {
-            if (!this.audio) { clearInterval(fade); return; }
-            if (this.audio.volume < 0.95) {
-                this.audio.volume = Math.min(1, this.audio.volume + step);
-            } else {
-                clearInterval(fade);
-            }
-        }, 100);
-    }
-
-    toggle() {
-        if (!this.audio) return;
-        if (this.playing) {
-            this.audio.pause();
-            this.playing = false;
-            this.disc?.classList.remove('spinning');
+        if (this.particles.length > 0) {
+            requestAnimationFrame(() => this.render());
         } else {
-            this.audio.play();
-            this.playing = true;
-            this.disc?.classList.add('spinning');
+            this.isAnimating = false;
+            this.ctx.clearRect(0, 0, this.width, this.height);
         }
     }
 }
 
 // ==========================================================================
-// MAIN APPLICATION
+// 5. MAIN CONTROLLER
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Init FX Engines ---
-    const petals = new PetalParticles('petals-canvas');
-    const confetti = new Confetti('confetti-canvas');
-    const music = new MusicController();
+    const petalsFX = new FloatingPetalsEngine('petals-canvas');
+    const confettiFX = new ConfettiEngine('confetti-canvas');
 
-    // --- Populate Hero ---
+    // ----------------------------------------------------------------------
+    // A. Bind Config Data
+    // ----------------------------------------------------------------------
+    const heroPartnerName = document.getElementById('hero-partner-name');
+    if (heroPartnerName) heroPartnerName.textContent = birthdayConfig.partnerNickname;
+
     const heroImg = document.getElementById('hero-img');
-    if (heroImg) heroImg.src = CONFIG.heroPhoto;
-    const heroName = document.getElementById('hero-name');
-    if (heroName) heroName.textContent = CONFIG.partnerNickname;
+    if (heroImg && birthdayConfig.heroPhoto) heroImg.src = birthdayConfig.heroPhoto;
 
-    // --- Populate Polaroids ---
-    const stack = document.getElementById('polaroid-stack');
-    const totalEl = document.getElementById('polaroid-total');
-    const currentEl = document.getElementById('polaroid-current');
-    if (stack && CONFIG.memories.length > 0) {
-        if (totalEl) totalEl.textContent = CONFIG.memories.length;
-        CONFIG.memories.forEach((m, i) => {
-            const card = document.createElement('div');
-            card.className = 'polaroid-card';
-            card.innerHTML = `
-                <div class="polaroid-img-wrap">
-                    <img src="${m.image}" alt="Foto kenangan ${i + 1}" class="polaroid-img" loading="lazy" onerror="handleImgFail(this)">
-                </div>
-                <div class="polaroid-caption">
-                    <span class="polaroid-caption-text">${m.caption}</span>
-                </div>
-            `;
-            stack.appendChild(card);
-        });
+    const letterAuthor = document.getElementById('letter-author-name');
+    if (letterAuthor) letterAuthor.textContent = birthdayConfig.yourName;
+
+    const footerPartner = document.getElementById('footer-partner-label');
+    if (footerPartner) footerPartner.textContent = birthdayConfig.partnerNickname;
+
+    const wishContent = document.getElementById('wish-text-content');
+    if (wishContent && birthdayConfig.wishText) {
+        wishContent.innerHTML = `<p>${birthdayConfig.wishText}</p>`;
     }
 
-    // --- Polaroid Swipe Logic ---
-    let polaroidIndex = 0;
-    let swipeStartX = 0, swipeStartY = 0, swiping = false;
-    const cards = () => stack?.querySelectorAll('.polaroid-card') || [];
-    const hintEl = document.getElementById('polaroid-hint');
+    // ----------------------------------------------------------------------
+    // B. Audio Controller (Reff Start @ 44s)
+    // ----------------------------------------------------------------------
+    const bgAudio = document.getElementById('bg-audio');
+    const floatingAudioPill = document.getElementById('floating-audio-pill');
+    const btnAudioToggle = document.getElementById('btn-audio-toggle');
+    let isPlaying = false;
 
-    const advancePolaroid = () => {
-        const allCards = Array.from(cards());
-        const topCard = allCards[0];
-        if (!topCard || polaroidIndex >= CONFIG.memories.length - 1) return;
+    if (bgAudio) {
+        bgAudio.src = birthdayConfig.musicSrc;
+    }
 
-        polaroidIndex++;
-        if (currentEl) currentEl.textContent = polaroidIndex + 1;
+    const playMusicFromReff = () => {
+        if (!bgAudio) return;
+        try {
+            bgAudio.currentTime = birthdayConfig.reffStartTime; // 44 detik
+            bgAudio.volume = 0;
+            const playPromise = bgAudio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    if (floatingAudioPill) floatingAudioPill.classList.remove('hidden');
 
-        topCard.classList.add('swipe-away-left');
-        topCard.addEventListener('transitionend', () => {
-            topCard.remove();
-            // Recompute z-index for remaining cards
-            Array.from(cards()).forEach((c, i) => {
-                c.style.zIndex = CONFIG.memories.length - i;
-            });
-        }, { once: true });
-
-        if (polaroidIndex >= CONFIG.memories.length - 1 && hintEl) {
-            hintEl.textContent = 'Semua foto telah dibuka 🌸';
+                    // Smooth audio fade-in over 2 seconds
+                    let vol = 0;
+                    const fadeInterval = setInterval(() => {
+                        vol += 0.05;
+                        if (vol >= 0.85) {
+                            bgAudio.volume = 0.85;
+                            clearInterval(fadeInterval);
+                        } else {
+                            bgAudio.volume = vol;
+                        }
+                    }, 100);
+                }).catch(err => {
+                    console.warn("Audio autoplay constraint:", err);
+                });
+            }
+        } catch (e) {
+            console.warn("Audio error:", e);
         }
     };
 
-    if (stack) {
-        // Touch events
-        stack.addEventListener('touchstart', (e) => {
-            swipeStartX = e.touches[0].clientX;
-            swipeStartY = e.touches[0].clientY;
-            swiping = true;
-        }, { passive: true });
-
-        stack.addEventListener('touchend', (e) => {
-            if (!swiping) return;
-            swiping = false;
-            const dx = e.changedTouches[0].clientX - swipeStartX;
-            const dy = e.changedTouches[0].clientY - swipeStartY;
-            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-                advancePolaroid();
+    if (btnAudioToggle && bgAudio) {
+        btnAudioToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgAudio.pause();
+                isPlaying = false;
+                btnAudioToggle.style.opacity = '0.5';
+            } else {
+                bgAudio.play();
+                isPlaying = true;
+                btnAudioToggle.style.opacity = '1';
             }
-        }, { passive: true });
-
-        // Mouse events (desktop)
-        stack.addEventListener('mousedown', (e) => {
-            swipeStartX = e.clientX;
-            swiping = true;
-        });
-        stack.addEventListener('mouseup', (e) => {
-            if (!swiping) return;
-            swiping = false;
-            const dx = e.clientX - swipeStartX;
-            if (Math.abs(dx) > 50) advancePolaroid();
         });
     }
 
-    // --- Populate Adore List ---
-    const adoreList = document.getElementById('adore-list');
-    if (adoreList) {
-        CONFIG.adoreList.forEach((item, i) => {
-            const el = document.createElement('div');
-            el.className = 'adore-item';
-            el.style.transitionDelay = `${i * 0.1}s`;
-            el.innerHTML = `
-                <span class="adore-number">${String(i + 1).padStart(2, '0')}</span>
-                <div class="adore-text">
+    // ----------------------------------------------------------------------
+    // C. Chapter 1: Prologue Whisper Sequence Animation
+    // ----------------------------------------------------------------------
+    const line1 = document.querySelector('.whisper-line.line-1');
+    const line2 = document.querySelector('.whisper-line.line-2');
+    const line3 = document.querySelector('.whisper-line.line-3');
+    const touchBox = document.getElementById('touch-interactive-box');
+    const btnStart = document.getElementById('btn-start-journey');
+
+    setTimeout(() => { if (line1) line1.classList.add('revealed'); }, 400);
+    setTimeout(() => { if (line2) line2.classList.add('revealed'); }, 1800);
+    setTimeout(() => { if (line3) line3.classList.add('revealed'); }, 3200);
+    setTimeout(() => { if (touchBox) touchBox.classList.add('revealed'); }, 4400);
+
+    // Trigger on touch heartbeat button
+    if (btnStart) {
+        btnStart.addEventListener('click', () => {
+            // Play song starting at 44s (Reff)
+            playMusicFromReff();
+
+            // Petal confetti burst
+            confettiFX.burst(window.innerWidth / 2, window.innerHeight / 2, 80);
+
+            // Hide Prologue, show Hero Chapter
+            const prologueChapter = document.getElementById('chapter-prologue');
+            const heroChapter = document.getElementById('chapter-hero');
+
+            if (prologueChapter && heroChapter) {
+                prologueChapter.style.opacity = '0';
+                setTimeout(() => {
+                    prologueChapter.classList.add('hidden-chapter');
+                    heroChapter.classList.remove('hidden-chapter');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 600);
+            }
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // D. Chapter Navigation Buttons
+    // ----------------------------------------------------------------------
+    document.querySelectorAll('.btn-next-chapter').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const targetChapter = document.getElementById(targetId);
+            if (targetChapter) {
+                targetChapter.classList.remove('hidden-chapter');
+                targetChapter.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ----------------------------------------------------------------------
+    // E. Chapter 3: Interactive Polaroid Stack (Tap / Swipe to Next Card)
+    // ----------------------------------------------------------------------
+    const polaroidStack = document.getElementById('polaroid-stack');
+    const counterText = document.getElementById('polaroid-counter-text');
+    let currentPolaroidIndex = 0;
+
+    if (polaroidStack && birthdayConfig.memories.length > 0) {
+        polaroidStack.innerHTML = birthdayConfig.memories.map((m, idx) => `
+            <div class="polaroid-card" data-index="${idx}" style="z-index: ${birthdayConfig.memories.length - idx}">
+                <div class="polaroid-photo-frame">
+                    <img src="${m.image}" alt="Momen ${idx + 1}" class="polaroid-photo" loading="lazy" onerror="window.handleImageFallback(this, 'gallery')">
+                </div>
+                <div class="polaroid-caption-box">
+                    <p class="polaroid-caption-text">${m.caption}</p>
+                </div>
+            </div>
+        `).join('');
+
+        const cards = polaroidStack.querySelectorAll('.polaroid-card');
+
+        cards.forEach((card, idx) => {
+            card.addEventListener('click', () => {
+                card.classList.add('swiped-away');
+                currentPolaroidIndex++;
+
+                if (counterText) {
+                    const displayNum = Math.min(currentPolaroidIndex + 1, cards.length);
+                    counterText.textContent = `Foto ${displayNum} dari ${cards.length}`;
+                }
+
+                confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 25);
+
+                // If all swiped, reset stack
+                if (currentPolaroidIndex >= cards.length) {
+                    setTimeout(() => {
+                        cards.forEach(c => c.classList.remove('swiped-away'));
+                        currentPolaroidIndex = 0;
+                        if (counterText) counterText.textContent = `Foto 1 dari ${cards.length}`;
+                    }, 700);
+                }
+            });
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // F. Chapter 4: Things I Adore List Injection
+    // ----------------------------------------------------------------------
+    const adoreList = document.getElementById('adore-cards-list');
+    if (adoreList && birthdayConfig.adores) {
+        adoreList.innerHTML = birthdayConfig.adores.map(item => `
+            <div class="adore-card">
+                <span class="adore-flower-badge">${item.flower}</span>
+                <div class="adore-content-box">
                     <h3 class="adore-title">${item.title}</h3>
                     <p class="adore-desc">${item.desc}</p>
                 </div>
-            `;
-            adoreList.appendChild(el);
-        });
-    }
-
-    // --- Populate Doa ---
-    const doaCard = document.getElementById('doa-card');
-    if (doaCard) {
-        const doaBody = document.createElement('div');
-        doaBody.className = 'doa-body';
-        CONFIG.doaLines.forEach(line => {
-            const p = document.createElement('p');
-            p.textContent = line;
-            doaBody.appendChild(p);
-        });
-        const amen = document.createElement('p');
-        amen.className = 'doa-amen';
-        amen.textContent = 'Aamiin ya Rabbal \'Alamin. ❤️';
-        doaBody.appendChild(amen);
-        doaCard.appendChild(doaBody);
-    }
-
-    // --- Populate Final Letter ---
-    const letterInner = document.getElementById('letter-inner');
-    if (letterInner && CONFIG.letter) {
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-        let html = `<span class="letter-date">${dateStr}</span>`;
-        html += `<p class="letter-salutation">${CONFIG.letter.salutation}</p>`;
-        CONFIG.letter.paragraphs.forEach(p => {
-            html += `<p class="letter-body-p">${p}</p>`;
-        });
-        html += `
-            <div class="letter-sign">
-                <p class="letter-sign-from">${CONFIG.letter.sign}</p>
-                <span class="letter-sign-name">${CONFIG.yourName} ❤️</span>
             </div>
-        `;
-        letterInner.innerHTML = html;
-
-        // Apply body p style
-        letterInner.querySelectorAll('.letter-body-p').forEach(el => {
-            el.style.cssText = 'font-size:clamp(0.95rem,2.8vw,1.05rem);color:#4A3530;line-height:1.85;margin-bottom:1.25rem;';
-        });
+        `).join('');
     }
 
-    // ==========================================================================
-    // PROLOGUE — Whisper Text Sequence + Touch to Start
-    // ==========================================================================
-    const prologueEl = document.getElementById('prologue');
-    const touchPrompt = document.getElementById('touch-prompt');
-    const heartbeatInner = document.querySelector('.heartbeat-inner');
+    // ----------------------------------------------------------------------
+    // G. Chapter 5: 23rd Candle & Blowing (Mic + Fallback)
+    // ----------------------------------------------------------------------
+    const candleFlame = document.getElementById('candle-flame');
+    const magicalCandle = document.getElementById('magical-candle');
+    const btnMicBlow = document.getElementById('btn-mic-blow');
+    const btnTapBlow = document.getElementById('btn-tap-blow');
+    const micStatusLabel = document.getElementById('mic-status-label');
+    const micGaugeBar = document.getElementById('mic-gauge-bar');
+    const micGaugeFill = document.getElementById('mic-gauge-fill');
+    const wishSuccessBox = document.getElementById('wish-success-box');
+    const blowActionWrapper = document.getElementById('blow-action-wrapper');
 
-    const whisperLines = [
-        document.getElementById('w1'),
-        document.getElementById('w2'),
-        document.getElementById('w3'),
-        document.getElementById('w4')
-    ].filter(Boolean);
+    let isCandleExtinguished = false;
+    let micStream = null;
+    let micAnimId = null;
 
-    // Sequence: reveal each whisper line, then show touch prompt
-    let idx = 0;
-    const revealNext = () => {
-        if (idx < whisperLines.length) {
-            whisperLines[idx].classList.add('visible');
-            idx++;
-            setTimeout(revealNext, 1800);
-        } else {
-            setTimeout(() => {
-                if (touchPrompt) touchPrompt.classList.add('visible');
-            }, 500);
+    const extinguishCandle = () => {
+        if (isCandleExtinguished) return;
+        isCandleExtinguished = true;
+
+        if (micStream) {
+            micStream.getTracks().forEach(t => t.stop());
+            micStream = null;
         }
-    };
+        if (micAnimId) cancelAnimationFrame(micAnimId);
 
-    setTimeout(revealNext, 800);
+        // Put out flame
+        if (candleFlame) candleFlame.classList.add('extinguished');
 
-    // ==========================================================================
-    // CHAPTER REVEAL — triggers 'revealed' class (switches display:none → flex)
-    // ==========================================================================
-    const revealChapter = (id) => {
-        const el = document.getElementById(id);
-        if (!el || el.classList.contains('revealed')) return;
-        el.classList.add('revealed');
-    };
+        // Smoke puff
+        if (magicalCandle) {
+            const smoke = document.createElement('div');
+            smoke.className = 'candle-smoke-rise';
+            magicalCandle.appendChild(smoke);
+            setTimeout(() => smoke.remove(), 2200);
+        }
 
-    // Touch / click to unlock next chapter + music
-    const startJourney = () => {
-        if (prologueEl.dataset.started === '1') return;
-        prologueEl.dataset.started = '1';
+        // Floral Confetti explosion
+        confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.45, 110);
 
-        music.start();
-
-        // Fade out prologue
-        prologueEl.style.transition = 'opacity 1.2s ease';
-        prologueEl.style.opacity = '0';
         setTimeout(() => {
-            prologueEl.style.display = 'none';
-            revealChapter('chapter1');
-            // Scroll to chapter1 after reveal
-            setTimeout(() => {
-                const c1 = document.getElementById('chapter1');
-                if (c1) c1.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        }, 1200);
+            if (blowActionWrapper) blowActionWrapper.style.display = 'none';
+            if (wishSuccessBox) wishSuccessBox.classList.remove('hidden');
+        }, 600);
     };
 
-    if (heartbeatInner) heartbeatInner.addEventListener('click', startJourney);
-    if (touchPrompt) touchPrompt.addEventListener('click', startJourney);
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                revealChapter(id);
-
-                // Animate adore items when chapter3 is visible
-                if (id === 'chapter3') {
-                    setTimeout(() => {
-                        document.querySelectorAll('.adore-item').forEach((item, i) => {
-                            setTimeout(() => item.classList.add('visible'), i * 120);
-                        });
-                    }, 300);
-                }
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
-
-    // Observe chapters 2-6 (chapter1 revealed by prologue tap)
-    ['chapter2', 'chapter3', 'chapter4', 'chapter5', 'chapter6'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
-    });
-
-    // ==========================================================================
-    // VIRTUAL 23 CANDLES
-    // ==========================================================================
-    const candleRow = document.getElementById('candle-base-row');
-    let candlesBlown = false;
-
-    if (candleRow) {
-        for (let i = 0; i < 23; i++) {
-            const candle = document.createElement('div');
-            candle.className = 'candle';
-            candle.id = `candle-${i}`;
-            candle.innerHTML = `
-                <div class="flame" id="flame-${i}"></div>
-                <div class="candle-body"></div>
-            `;
-            candleRow.appendChild(candle);
-        }
+    if (btnTapBlow) {
+        btnTapBlow.addEventListener('click', extinguishCandle);
     }
 
-    const blowOutAllCandles = () => {
-        if (candlesBlown) return;
-        candlesBlown = true;
-
-        const flames = document.querySelectorAll('.flame');
-        flames.forEach((flame, i) => {
-            setTimeout(() => {
-                flame.classList.add('out');
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke';
-                flame.parentElement.appendChild(smoke);
-                setTimeout(() => smoke.remove(), 2000);
-            }, i * 30);
-        });
-
-        // After all blown: show success
-        setTimeout(() => {
-            const blowZone = document.getElementById('blow-zone');
-            const successEl = document.getElementById('candle-success');
-            if (blowZone) blowZone.classList.add('hidden');
-            if (successEl) successEl.classList.remove('hidden');
-            confetti.burst(90);
-        }, 23 * 30 + 600);
-    };
-
-    // Manual Tap
-    const btnTap = document.getElementById('btn-tap');
-    if (btnTap) btnTap.addEventListener('click', blowOutAllCandles);
-
-    // Microphone Blow
-    const btnMic = document.getElementById('btn-mic');
-    const micWrap = document.getElementById('mic-level-wrap');
-    const micFill = document.getElementById('mic-level-fill');
-    let micStream = null, audioCtx = null, analyser = null, micRaf = null;
-
-    if (btnMic) {
-        btnMic.addEventListener('click', async () => {
-            if (candlesBlown) return;
+    if (btnMicBlow) {
+        btnMicBlow.addEventListener('click', async () => {
+            if (isCandleExtinguished) return;
             try {
+                if (micStatusLabel) micStatusLabel.textContent = "Meminta izin mikrofon...";
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 micStream = stream;
-                const AC = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AC();
-                analyser = audioCtx.createAnalyser();
+
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                const audioCtx = new AudioCtx();
+                const analyser = audioCtx.createAnalyser();
                 analyser.fftSize = 256;
-                const src = audioCtx.createMediaStreamSource(stream);
-                src.connect(analyser);
+                const source = audioCtx.createMediaStreamSource(stream);
+                source.connect(analyser);
 
-                const instrEl = document.getElementById('blow-instruction');
-                if (instrEl) instrEl.textContent = 'Tiup ke mikrofon HP-mu! 💨';
-                if (micWrap) micWrap.classList.remove('hidden');
-                btnMic.style.display = 'none';
+                if (micStatusLabel) micStatusLabel.textContent = "Mikrofon aktif! Hembuskan napasmu ke layar ponsel! 💨";
+                if (micGaugeBar) micGaugeBar.classList.remove('hidden');
+                if (btnMicBlow) btnMicBlow.classList.add('hidden');
 
-                const data = new Uint8Array(analyser.frequencyBinCount);
-                const check = () => {
-                    if (candlesBlown) return;
-                    analyser.getByteFrequencyData(data);
-                    const avg = data.reduce((s, v) => s + v, 0) / data.length;
-                    const pct = Math.min((avg / 75) * 100, 100);
-                    if (micFill) micFill.style.width = `${pct}%`;
-                    if (avg > 65) {
-                        micStream.getTracks().forEach(t => t.stop());
-                        cancelAnimationFrame(micRaf);
-                        blowOutAllCandles();
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+                const checkBlow = () => {
+                    if (isCandleExtinguished) return;
+                    analyser.getByteFrequencyData(dataArray);
+
+                    let sum = 0;
+                    for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+                    const avg = sum / dataArray.length;
+
+                    const percent = Math.min((avg / 80) * 100, 100);
+                    if (micGaugeFill) micGaugeFill.style.width = `${percent}%`;
+
+                    if (avg > 60) {
+                        extinguishCandle();
                         return;
                     }
-                    micRaf = requestAnimationFrame(check);
+                    micAnimId = requestAnimationFrame(checkBlow);
                 };
-                check();
+                checkBlow();
 
-            } catch {
-                const instrEl = document.getElementById('blow-instruction');
-                if (instrEl) instrEl.textContent = 'Mikrofon tidak tersedia — gunakan tombol ketuk 💨';
-                btnMic.style.display = 'none';
+            } catch (err) {
+                console.warn("Microphone access error:", err);
+                if (micStatusLabel) {
+                    micStatusLabel.textContent = "Tidak dapat mengakses mikrofon. Ketuk tombol tiup di bawah ini! ❤️";
+                }
+                if (btnMicBlow) btnMicBlow.style.display = 'none';
             }
         });
     }
 
-    // ==========================================================================
-    // ENVELOPE OPENING — Letter Chapter
-    // ==========================================================================
-    const envBox = document.getElementById('envelope-box');
-    const envFlap = document.getElementById('env-flap');
-    const envContainer = document.getElementById('envelope-container');
-    const letterSheet = document.getElementById('letter-sheet');
-    const finalClosing = document.getElementById('final-closing');
+    // ----------------------------------------------------------------------
+    // H. Chapter 6: Botanical Envelope & Final Letter
+    // ----------------------------------------------------------------------
+    const envelope = document.getElementById('botanical-envelope');
+    const flap = document.getElementById('envelope-top-flap');
+    const unfoldedLetter = document.getElementById('unfolded-letter-paper');
 
-    if (envBox) {
-        const openEnvelope = () => {
-            if (envBox.dataset.opened === '1') return;
-            envBox.dataset.opened = '1';
-
-            if (envFlap) envFlap.classList.add('open');
+    if (envelope && unfoldedLetter) {
+        envelope.addEventListener('click', () => {
+            if (flap) flap.classList.add('open');
+            confettiFX.burst(window.innerWidth / 2, window.innerHeight * 0.6, 50);
 
             setTimeout(() => {
-                if (envContainer) {
-                    envContainer.style.transition = 'opacity 0.5s ease';
-                    envContainer.style.opacity = '0';
-                    setTimeout(() => {
-                        envContainer.style.display = 'none';
-                        if (letterSheet) letterSheet.classList.remove('hidden');
-                        setTimeout(() => {
-                            if (finalClosing) finalClosing.classList.remove('hidden');
-                            confetti.burst(60);
-                        }, 800);
-                    }, 500);
-                }
-            }, 700);
-        };
-
-        envBox.addEventListener('click', openEnvelope);
-        envBox.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+                envelope.style.display = 'none';
+                unfoldedLetter.classList.add('revealed');
+            }, 500);
         });
     }
 
-    // ==========================================================================
-    // SMOOTH ANCHOR SCROLL for .scroll-down-btn links
-    // ==========================================================================
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // ----------------------------------------------------------------------
+    // I. Easter Egg Secret Modal
+    // ----------------------------------------------------------------------
+    const easterBtn = document.getElementById('footer-easter-egg');
+    const easterModal = document.getElementById('easter-egg-modal');
+    const easterClose = document.getElementById('btn-close-easter');
+    const easterBackdrop = document.getElementById('easter-backdrop');
+    let clickCount = 0;
+    let timer = null;
+
+    if (easterBtn && easterModal) {
+        easterBtn.addEventListener('click', () => {
+            clickCount++;
+            clearTimeout(timer);
+            timer = setTimeout(() => { clickCount = 0; }, 2500);
+
+            if (clickCount >= 4) {
+                clickCount = 0;
+                easterModal.classList.remove('hidden');
+                confettiFX.burst(window.innerWidth / 2, window.innerHeight / 2, 80);
             }
         });
-    });
 
+        const closeEaster = () => easterModal.classList.add('hidden');
+        if (easterClose) easterClose.addEventListener('click', closeEaster);
+        if (easterBackdrop) easterBackdrop.addEventListener('click', closeEaster);
+    }
 });
