@@ -2,579 +2,229 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Happy 23rd Birthday, [NAMA PACAR] ❤️</title>
-    
-    <!-- Meta SEO -->
-    <meta name="description" content="Sebuah hadiah digital kecil, romantis dan personal yang dibuat khusus untuk merayakan ulang tahunmu yang ke-23.">
-    <meta name="theme-color" content="#FAF7F2">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Happy 23rd Birthday, [NAMA PACAR] ❤️">
-    <meta property="og:description" content="A romantic birthday surprise made especially for you.">
-    <meta property="og:type" content="website">
-    
-    <!-- Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1A0E0A">
+    <title>Happy 23rd Birthday ❤️</title>
+    <meta name="description" content="Sebuah hadiah kecil yang dibuat khusus untukmu.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Canvas for Floating Romance Particles & Confetti -->
-    <canvas id="ambient-canvas"></canvas>
-    <canvas id="confetti-canvas"></canvas>
+<!-- Audio -->
+<audio id="bg-audio" preload="auto" loop>
+    <source src="assets/music/Serta Mulia-Sal Priadi (Lyrics).mp3" type="audio/mpeg">
+</audio>
 
-    <!-- ==============================================
-         1. FULLSCREEN OPENING SCREEN
-    ============================================== -->
-    <section id="opening-screen" class="opening-overlay" aria-label="Layar Pembuka Hadiah">
-        <div class="opening-bg-glow"></div>
-        <div class="opening-content">
-            <div class="opening-icon-wrapper">
-                <span class="sparkle-icon">✨</span>
-                <div class="pulse-ring"></div>
+<!-- Floating Petals Canvas -->
+<canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+     PROLOGUE — PEMBUKAAN INTIM
+     ============================================================ -->
+<section id="prologue" class="chapter prologue-chapter">
+    <div class="prologue-bg"></div>
+
+    <div class="prologue-content">
+        <div class="whisper-text-wrap" id="whisper-wrap">
+            <p class="whisper-line" id="w1">Hai kamu...</p>
+            <p class="whisper-line" id="w2">Di antara bisingnya dunia hari ini,</p>
+            <p class="whisper-line" id="w3">aku ingin mencuri<br>beberapa menit waktumu.</p>
+            <p class="whisper-line" id="w4">Ada sebuah lagu,<br>dan segenap rasa<br>yang ingin kusampaikan.</p>
+        </div>
+
+        <div class="touch-prompt" id="touch-prompt">
+            <div class="heartbeat-ring">
+                <div class="heartbeat-inner">
+                    <span class="headphone-icon">🎧</span>
+                </div>
             </div>
-            <p class="opening-eyebrow">Ada sesuatu untukmu...</p>
-            <h1 class="opening-title">Sebuah Hadiah Kecil</h1>
-            <p class="opening-subtitle">yang kubuat dengan penuh rasa sayang, khusus untukmu.</p>
-            
-            <button id="btn-open-gift" class="btn-romantic-primary" type="button" aria-label="Buka Hadiah">
-                <span class="btn-text">BUKA HADIAH</span>
-                <span class="btn-heart">❤️</span>
-            </button>
-            <p class="opening-hint">Aktifkan suara untuk pengalaman terbaik 🎵</p>
+            <p class="touch-hint">Pasang earphone-mu,<br>lalu sentuh di sini untuk memulai...</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==============================================
-         NAVIGATION BAR
-    ============================================== -->
-    <header id="main-header" class="site-header">
-        <nav class="nav-container" aria-label="Navigasi Utama">
-            <a href="#hero" class="nav-brand" id="nav-brand-text">
-                <span class="brand-name">[PANGGILAN PACAR]</span>
-                <span class="brand-heart">❤️</span>
-            </a>
-            
-            <!-- Desktop Links -->
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#hero" class="nav-link active">Home</a></li>
-                <li><a href="#letter" class="nav-link">Surat</a></li>
-                <li><a href="#about" class="nav-link">Tentangmu</a></li>
-                <li><a href="#gallery" class="nav-link">Kenangan</a></li>
-                <li><a href="#timeline" class="nav-link">Kisah Kita</a></li>
-                <li><a href="#things" class="nav-link">23 Hal</a></li>
-                <li><a href="#wish" class="nav-link">Doa</a></li>
-                <li><a href="#cake" class="nav-link">Kue & Lilin</a></li>
-            </ul>
-
-            <!-- Mobile Hamburger Toggle -->
-            <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle Menu" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Mobile Drawer Navigation -->
-    <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
-        <div class="drawer-header">
-            <span class="drawer-title">Daftar Isi Perjalanan ✨</span>
-            <button id="drawer-close" class="drawer-close-btn" aria-label="Tutup Menu">✕</button>
-        </div>
-        <ul class="drawer-menu">
-            <li><a href="#hero" class="drawer-link">🌸 Beranda Utama</a></li>
-            <li><a href="#letter" class="drawer-link">💌 Surat Cinta Untukmu</a></li>
-            <li><a href="#about" class="drawer-link">✨ Hal Kecil Yang Kusuka</a></li>
-            <li><a href="#gallery" class="drawer-link">📸 Galeri Kenangan Indah</a></li>
-            <li><a href="#timeline" class="drawer-link">⏳ Perjalanan Kisah Kita</a></li>
-            <li><a href="#things" class="drawer-link">💖 23 Hal Istimewa Tentangmu</a></li>
-            <li><a href="#wish" class="drawer-link">🌷 Doa Tulus di Usia 23</a></li>
-            <li><a href="#moment" class="drawer-link">⏱️ Hari Bahagia</a></li>
-            <li><a href="#cake" class="drawer-link">🎂 Tiup Lilin Ulang Tahun</a></li>
-            <li><a href="#gift" class="drawer-link">🎁 Hadiah Rahasia</a></li>
-            <li><a href="#final" class="drawer-link">📜 Babak Baru 23 Tahun</a></li>
-        </ul>
+<!-- ============================================================
+     BABAK 1 — THE MELODY & YOU
+     ============================================================ -->
+<section id="chapter1" class="chapter hero-chapter hidden-chapter">
+    <div class="hero-photo-wrap">
+        <img id="hero-img" src="assets/photos/hero.jpg" alt="Foto untukmu" class="hero-photo" onerror="handleImgFail(this)">
+        <div class="hero-overlay-gradient"></div>
     </div>
 
-    <!-- ==============================================
-         FLOATING MUSIC PLAYER
-    ============================================== -->
-    <aside id="music-player" class="music-player-widget" aria-label="Pemutar Musik Romantis">
-        <audio id="bg-audio" preload="auto" loop></audio>
-        
-        <div class="player-pill">
-            <button id="btn-toggle-play" class="player-disc-btn" aria-label="Putar / Hentikan Musik" title="Putar Musik">
-                <div class="disc-vinyl" id="disc-vinyl">
-                    <span class="disc-core">🎵</span>
-                </div>
-            </button>
-            <div class="player-info">
-                <div class="track-title-marquee">
-                    <span id="player-track-name" class="track-name">Our Little Song</span>
-                </div>
-                <div class="player-progress-bar" id="player-progress-container" title="Klik untuk memajukan musik">
-                    <div id="player-progress-fill" class="progress-fill"></div>
-                </div>
+    <div class="hero-text-wrap">
+        <span class="date-badge">06 · 10 · 2026</span>
+        <h1 class="hero-title">Happy 23rd<br>Birthday</h1>
+        <p class="hero-for">Untuk <span id="hero-name">[PANGGILAN PACAR]</span></p>
+
+        <div class="hero-flower-row" aria-hidden="true">
+            <svg class="flower-svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="6" fill="#D4AF37"/><ellipse cx="30" cy="15" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="30" cy="45" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="15" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/><ellipse cx="45" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/><ellipse cx="19" cy="19" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(45 19 19)"/><ellipse cx="41" cy="19" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(-45 41 19)"/><ellipse cx="19" cy="41" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(-45 19 41)"/><ellipse cx="41" cy="41" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(45 41 41)"/></svg>
+            <svg class="flower-svg small" viewBox="0 0 40 40"><circle cx="20" cy="20" r="4" fill="#C59B27"/><ellipse cx="20" cy="9" rx="4" ry="7" fill="#FBDCE4" opacity=".9"/><ellipse cx="20" cy="31" rx="4" ry="7" fill="#FBDCE4" opacity=".9"/><ellipse cx="9" cy="20" rx="7" ry="4" fill="#FBDCE4" opacity=".9"/><ellipse cx="31" cy="20" rx="7" ry="4" fill="#FBDCE4" opacity=".9"/></svg>
+            <svg class="flower-svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="6" fill="#D4AF37"/><ellipse cx="30" cy="15" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="30" cy="45" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="15" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/><ellipse cx="45" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/><ellipse cx="19" cy="19" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(45 19 19)"/><ellipse cx="41" cy="19" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(-45 41 19)"/><ellipse cx="19" cy="41" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(-45 19 41)"/><ellipse cx="41" cy="41" rx="7" ry="10" fill="#FBDCE4" opacity=".75" transform="rotate(45 41 41)"/></svg>
+        </div>
+
+        <a href="#chapter2" class="scroll-down-btn">
+            <span>Lanjut</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- ============================================================
+     BABAK 2 — LITTLE POLAROID MOMENTS
+     ============================================================ -->
+<section id="chapter2" class="chapter polaroid-chapter hidden-chapter">
+    <div class="chapter-header">
+        <span class="chapter-tag">Our Little Memories</span>
+        <h2 class="chapter-title">Momen-momen kecil<br>yang kurindukan</h2>
+    </div>
+
+    <div class="polaroid-stack-wrap">
+        <div class="polaroid-stack" id="polaroid-stack">
+            <!-- Polaroid cards injected via JS -->
+        </div>
+        <div class="polaroid-counter">
+            <span id="polaroid-current">1</span> / <span id="polaroid-total">6</span>
+        </div>
+        <p class="polaroid-hint" id="polaroid-hint">Geser ke kiri untuk foto berikutnya →</p>
+    </div>
+</section>
+
+<!-- ============================================================
+     BABAK 3 — THINGS I ADORE
+     ============================================================ -->
+<section id="chapter3" class="chapter adore-chapter hidden-chapter">
+    <div class="adore-bloom" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="bloom-svg"><circle cx="60" cy="60" r="12" fill="#D4AF37"/><ellipse cx="60" cy="25" rx="12" ry="22" fill="#FBDCE4"/><ellipse cx="60" cy="95" rx="12" ry="22" fill="#FBDCE4"/><ellipse cx="25" cy="60" rx="22" ry="12" fill="#FBDCE4"/><ellipse cx="95" cy="60" rx="22" ry="12" fill="#FBDCE4"/><ellipse cx="33" cy="33" rx="14" ry="22" fill="#F8CAD4" transform="rotate(45 33 33)"/><ellipse cx="87" cy="33" rx="14" ry="22" fill="#F8CAD4" transform="rotate(-45 87 33)"/><ellipse cx="33" cy="87" rx="14" ry="22" fill="#F8CAD4" transform="rotate(-45 33 87)"/><ellipse cx="87" cy="87" rx="14" ry="22" fill="#F8CAD4" transform="rotate(45 87 87)"/></svg>
+    </div>
+
+    <div class="container">
+        <div class="chapter-header">
+            <span class="chapter-tag">Hal-hal Kecil</span>
+            <h2 class="chapter-title">Yang aku suka<br>darimu ❤️</h2>
+        </div>
+
+        <div class="adore-list" id="adore-list">
+            <!-- Items injected via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     BABAK 4 — DOA & WISH
+     ============================================================ -->
+<section id="chapter4" class="chapter doa-chapter hidden-chapter">
+    <div class="doa-petals-wrap" aria-hidden="true">
+        <div class="doa-petal p1">🌸</div>
+        <div class="doa-petal p2">🌺</div>
+        <div class="doa-petal p3">🌸</div>
+        <div class="doa-petal p4">🌷</div>
+        <div class="doa-petal p5">🌸</div>
+    </div>
+
+    <div class="container">
+        <div class="chapter-header">
+            <span class="chapter-tag">Doa Tulus</span>
+            <h2 class="chapter-title">Doaku untukmu<br>di usia ke-23 🌷</h2>
+        </div>
+
+        <div class="doa-card" id="doa-card">
+            <!-- Injected via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     BABAK 5 — VIRTUAL CANDLE & WISH
+     ============================================================ -->
+<section id="chapter5" class="chapter candle-chapter hidden-chapter">
+    <div class="container text-center">
+        <div class="chapter-header">
+            <span class="chapter-tag">Make a Wish</span>
+            <h2 class="chapter-title">Pejamkan mata,<br>buat satu keinginan...</h2>
+        </div>
+
+        <div class="candle-stage" id="candle-stage">
+            <!-- Minimalist 23 candles -->
+            <div class="candle-base-row" id="candle-base-row"></div>
+            <div class="birthday-num">23</div>
+        </div>
+
+        <div class="blow-zone" id="blow-zone">
+            <p class="blow-instruction" id="blow-instruction">Tarik napas... lalu tiup lilinnya 💨</p>
+            <div class="blow-buttons">
+                <button id="btn-mic" class="btn-blow-primary" type="button">🎤 Pakai Mikrofon</button>
+                <button id="btn-tap" class="btn-blow-secondary" type="button">👆 Ketuk Layar</button>
             </div>
-            <div class="player-controls">
-                <button id="btn-mute" class="player-ctrl-btn" aria-label="Mute Musik" title="Mute/Unmute">
-                    <span id="mute-icon">🔊</span>
-                </button>
+            <div class="mic-level-wrap hidden" id="mic-level-wrap">
+                <div class="mic-level-bar"><div id="mic-level-fill" class="mic-level-fill"></div></div>
+                <span class="mic-hint">Tiup ke mikrofon HP-mu!</span>
             </div>
         </div>
-        <div id="music-status-notice" class="music-notice hidden">Musik siap diputar</div>
-    </aside>
 
-    <!-- ==============================================
-         MAIN CONTENT CONTAINER
-    ============================================== -->
-    <main id="main-content" class="content-wrapper">
-
-        <!-- ==============================================
-             SECTION 1: HERO SECTION
-        ============================================== -->
-        <section id="hero" class="section hero-section" aria-label="Hero Section">
-            <div class="hero-bg-container">
-                <div class="hero-photo-wrapper">
-                    <img id="hero-img" src="assets/photos/hero.jpg" alt="Foto Pacar Tersayang" class="hero-photo" loading="eager" onerror="handleImageFallback(this, 'hero')">
-                    <div class="hero-overlay"></div>
-                </div>
-            </div>
-
-            <div class="hero-content">
-                <span class="hero-badge animate-fade">06 • 10 • 2026</span>
-                <h1 class="hero-title animate-slide-up">
-                    Happy 23rd Birthday <span class="heart-pulse">❤️</span>
-                </h1>
-                <p class="hero-recipient animate-slide-up delay-1">
-                    Untuk <span class="recipient-name" id="hero-recipient-name">[PANGGILAN PACAR]</span>
-                </p>
-                <p class="hero-quote animate-slide-up delay-2">
-                    "Hari ini bukan hanya tentang bertambahnya usia, tetapi tentang merayakan seseorang yang begitu berharga dan mengisi setiap hariku dengan kehangatan."
-                </p>
-                <div class="hero-actions animate-slide-up delay-3">
-                    <a href="#letter" class="btn-romantic-secondary">
-                        <span>Lanjutkan perjalanan</span>
-                        <span class="scroll-arrow">↓</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 2: LOVE LETTER
-        ============================================== -->
-        <section id="letter" class="section letter-section" aria-label="Surat Cinta">
-            <div class="container letter-container">
-                <div class="section-header text-center">
-                    <span class="section-tag">A Warm Note</span>
-                    <h2 class="section-title">Ada sesuatu yang ingin aku katakan...</h2>
-                    <p class="section-desc">Buka amplop ini khusus untukmu di hari istimewamu.</p>
-                </div>
-
-                <div class="envelope-wrapper" id="envelope-wrapper">
-                    <!-- Interactive Envelope -->
-                    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Klik untuk membuka surat">
-                        <div class="envelope-flap" id="envelope-flap"></div>
-                        <div class="envelope-pocket"></div>
-                        <div class="wax-seal" id="wax-seal">
-                            <span>❤️</span>
-                        </div>
-                        <span class="envelope-tap-hint" id="envelope-tap-hint">Ketuk untuk membuka surat 💌</span>
-                    </div>
-
-                    <!-- Opened Letter Sheet -->
-                    <article class="letter-sheet" id="letter-sheet" aria-live="polite">
-                        <div class="letter-header">
-                            <span class="letter-date" id="letter-date-display">6 Oktober 2026</span>
-                            <span class="letter-seal-stamp">Special Edition</span>
-                        </div>
-                        <div class="letter-body">
-                            <p class="letter-salutation">Sayang,</p>
-                            <p>Selamat ulang tahun yang ke-23.</p>
-                            <p>
-                                Aku mungkin tidak selalu pandai merangkai kata atau mengungkapkan setiap getar rasa di dada, tetapi hari ini aku ingin kamu tahu betapa bersyukurnya aku karena Tuhan mempertemukan dan menghadirkanmu dalam hidupku.
-                            </p>
-                            
-                            <!-- Custom editable message marker -->
-                            <div class="letter-custom-message" id="letter-custom-content">
-                                <p>
-                                    Terima kasih telah menjadi teman berbagi tawa, tempat berteduh saat dunia sedang bising, dan alasan sederhana kenapa hari-hariku selalu terasa lebih bermakna. Kehadiranmu bukan sekadar ada, tapi mengubah caraku memandang kebahagiaan.
-                                </p>
-                            </div>
-
-                            <p>
-                                Semoga di usia yang baru ini, kamu semakin dekat dengan semua impian yang diam-diam kamu semogakan di dalam sujudmu.
-                            </p>
-                            <p>
-                                Dan semoga... kalau boleh, aku masih tetap menjadi orang yang beruntung bisa berjalan di sampingmu, menggenggam tanganmu, dan menemani setiap langkah perjalananmu.
-                            </p>
-                            <div class="letter-sign-off">
-                                <span class="sign-heart">❤️</span>
-                                <p class="sign-from">Selalu menyayangimu,</p>
-                                <p class="sign-name" id="letter-sender-name">[NAMA SAYA]</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 3: ABOUT YOU (HAL-HAL KECIL)
-        ============================================== -->
-        <section id="about" class="section about-section" aria-label="Hal yang Kusuka Dari Kamu">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">The Little Details</span>
-                    <h2 class="section-title">Hal-hal kecil yang aku suka dari kamu ❤️</h2>
-                    <p class="section-desc">Banyak hal sederhana tentangmu yang selalu membuatku jatuh cinta berulang kali.</p>
-                </div>
-
-                <div class="about-grid" id="about-cards-container">
-                    <!-- Populated dynamically via config with fallback items -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 4: MEMORY GALLERY (CINEMATIC)
-        ============================================== -->
-        <section id="gallery" class="section gallery-section" aria-label="Galeri Kenangan">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">Captured Moments</span>
-                    <h2 class="section-title">Our Little Memories 📸</h2>
-                    <p class="section-desc">Setiap lembar foto menyimpan tawa, kehangatan, dan cerita manis kita.</p>
-                </div>
-
-                <div class="gallery-editorial-grid" id="gallery-grid">
-                    <!-- Populated dynamically via config with fallback items -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 5: MEMORY TIMELINE
-        ============================================== -->
-        <section id="timeline" class="section timeline-section" aria-label="Garis Waktu Kenangan">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">Our Chapters</span>
-                    <h2 class="section-title">A Little Journey Of Us ⏳</h2>
-                    <p class="section-desc">Dari awal mula perjumpaan hingga hari ini merayakan ulang tahunmu yang ke-23.</p>
-                </div>
-
-                <div class="timeline-tree" id="timeline-container">
-                    <!-- Populated dynamically via config with fallback items -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 6: 23 THINGS ABOUT YOU
-        ============================================== -->
-        <section id="things" class="section things-section" aria-label="23 Hal Tentang Kamu">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">23 Years • 23 Reasons</span>
-                    <h2 class="section-title">23 Things About You ❤️</h2>
-                    <p class="section-desc">Ketuk setiap kartu untuk membaca hal-hal istimewa yang kusimpan di hati tentangmu.</p>
-                    <div class="things-progress-bar">
-                        <span id="things-read-counter">Kartu terbuka: 0 / 23</span>
-                        <div class="things-meter">
-                            <div id="things-meter-fill" class="meter-fill"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="things-grid" id="things-cards-container">
-                    <!-- 23 interactive cards dynamically injected -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 7: WISH / DOA SECTION
-        ============================================== -->
-        <section id="wish" class="section wish-section" aria-label="Doa Tulus Untukmu">
-            <div class="wish-bg-glow"></div>
-            <div class="container wish-container">
-                <div class="wish-card">
-                    <div class="wish-card-icon">🌷</div>
-                    <span class="section-tag">A Heartfelt Prayer</span>
-                    <h2 class="section-title">Doaku Untukmu di Usia 23 🌷</h2>
-                    
-                    <div class="wish-body" id="wish-body-content">
-                        <p class="wish-lead">Di lembaran usiamu yang ke-23 ini, kupanjatkan doa yang paling tulus...</p>
-                        <p>Semoga setiap langkah kakimu tahun ini dipenuhi dengan kemudahan dan hal-hal baik yang tak terduga.</p>
-                        <p>Semoga semua impian yang diam-diam kamu perjuangkan perlahan menemukan jalannya dan berbuah manis.</p>
-                        <p>Semoga kamu senantiasa dianugerahi kesehatan, kedamaian hati, dan dikelilingi oleh orang-orang yang tulus menyayangimu.</p>
-                        <p>Semoga ketika hari terasa melelahkan dan dunia menuntut terlalu banyak, kamu selalu menemukan alasan untuk kembali tersenyum lega.</p>
-                        <p>Dan semoga... aku masih diberi kesempatan oleh semesta untuk mendampingimu, melihatmu tumbuh, mekar, dan berbahagia seutuhnya.</p>
-                        <p class="wish-amen">Aamiin ya Rabbal 'Alamin. ❤️</p>
-                    </div>
-
-                    <div class="wish-card-footer">
-                        <div class="wish-divider">
-                            <span>✦</span>
-                            <span>✦</span>
-                            <span>✦</span>
-                        </div>
-                        <p class="wish-quote">"Doa terbaik untuk orang yang paling istimewa."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 8: BIRTHDAY COUNTDOWN / MOMENT
-        ============================================== -->
-        <section id="moment" class="section moment-section" aria-label="Momen Ulang Tahun">
-            <div class="container text-center">
-                <span class="section-tag">The Special Milestone</span>
-                <h2 class="moment-header-status" id="moment-status-title">TODAY</h2>
-                
-                <div class="moment-date-badge">
-                    <span id="moment-date-text">06 . 10 . 2026</span>
-                </div>
-
-                <div class="moment-counter-container" id="moment-counter-wrapper">
-                    <!-- Dynamic state: Countdown or "It's Your Day!" banner -->
-                    <div class="countdown-grid" id="countdown-grid">
-                        <div class="countdown-unit">
-                            <span class="countdown-number" id="cd-days">00</span>
-                            <span class="countdown-label">HARI</span>
-                        </div>
-                        <div class="countdown-unit">
-                            <span class="countdown-number" id="cd-hours">00</span>
-                            <span class="countdown-label">JAM</span>
-                        </div>
-                        <div class="countdown-unit">
-                            <span class="countdown-number" id="cd-minutes">00</span>
-                            <span class="countdown-label">MENIT</span>
-                        </div>
-                        <div class="countdown-unit">
-                            <span class="countdown-number" id="cd-seconds">00</span>
-                            <span class="countdown-label">DETIK</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="moment-age-highlight">
-                    <span class="big-number">23</span>
-                    <span class="big-caption">YEARS OF RADIANCE & BEAUTY ❤️</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 9: VIRTUAL BIRTHDAY CAKE & BLOW CANDLE
-        ============================================== -->
-        <section id="cake" class="section cake-section" aria-label="Kue Ulang Tahun Virtual">
-            <div class="container text-center">
-                <span class="section-tag">Interactive Celebration</span>
-                <h2 class="section-title">Make A Wish... 🎂</h2>
-                <div class="cake-instruction">
-                    <p>Pejamkan mata sejenak...</p>
-                    <p>Pikirkan satu keinginan terdalammu di usia 23 ini.</p>
-                    <p>Tarik napas perlahan...</p>
-                    <p class="highlight-prompt">Lalu tiup lilinnya! 💨</p>
-                </div>
-
-                <!-- Virtual Cake Container -->
-                <div class="cake-stage" id="cake-stage">
-                    <div class="cake-plate">
-                        <div class="cake-body">
-                            <!-- Cake Tiers -->
-                            <div class="cake-tier tier-top">
-                                <div class="frosting-drips"></div>
-                                <!-- 23 Virtual Candles Grid/Row Container -->
-                                <div class="candles-container" id="candles-container" aria-label="23 Lilin Ulang Tahun">
-                                    <!-- Injected via script: 23 individual candles with animated flames -->
-                                </div>
-                            </div>
-                            <div class="cake-tier tier-middle">
-                                <div class="cake-decorations">
-                                    <span>🍓</span><span>✨</span><span>🍓</span><span>✨</span><span>🍓</span>
-                                </div>
-                            </div>
-                            <div class="cake-tier tier-bottom">
-                                <div class="tier-ribbon">
-                                    <span>Chapter 23</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blowing Interactions (Microphone & Button Fallback) -->
-                <div class="blowing-panel" id="blowing-panel">
-                    <div class="mic-status-box" id="mic-status-box">
-                        <p id="mic-status-text">Gunakan mikrofonmu untuk meniup lilin seperti di dunia nyata!</p>
-                        <div class="mic-meter-wrapper hidden" id="mic-meter-wrapper">
-                            <span class="mic-meter-label">Kekuatan Tiupan:</span>
-                            <div class="mic-meter-bar">
-                                <div id="mic-level-fill" class="mic-level-fill"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blowing-buttons-group">
-                        <button id="btn-activate-mic" class="btn-romantic-primary" type="button">
-                            <span>AKTIFKAN MIKROFON</span> 🎤
-                        </button>
-                        
-                        <div class="fallback-or-text">atau jika tanpa mikrofon:</div>
-
-                        <button id="btn-manual-blow" class="btn-romantic-secondary" type="button">
-                            <span>TIUP LILIN SEKARANG</span> 💨
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Success Banner after candles are blown out -->
-                <div id="cake-success-banner" class="cake-success-card hidden" aria-live="assertive">
-                    <div class="success-sparks">✨ 🌟 ✨</div>
-                    <h3 class="success-title">🎉 HAPPY 23RD BIRTHDAY! 🎉</h3>
-                    <p class="success-wish">You made a wish. I hope all of your deepest dreams come true, my love. ❤️</p>
-                    <a href="#gift" class="btn-romantic-primary" id="btn-goto-gift">
-                        <span>Lanjut ke Hadiah Terakhir</span> 🎁
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 10: SURPRISE GIFT BOX
-        ============================================== -->
-        <section id="gift" class="section gift-section" aria-label="Kotak Hadiah Kejutan">
-            <div class="container text-center">
-                <span class="section-tag">A Final Surprise</span>
-                <h2 class="section-title">Tunggu... Ternyata masih ada satu hadiah lagi 🎁</h2>
-                <p class="section-desc">Sebuah kado kecil yang telah kusiapkan khusus untuk hari bahagiamu.</p>
-
-                <!-- Interactive 3D Gift Box -->
-                <div class="gift-box-stage">
-                    <div class="gift-box" id="gift-box" role="button" tabindex="0" aria-label="Buka Kotak Hadiah">
-                        <div class="gift-lid" id="gift-lid">
-                            <div class="gift-bow">🎀</div>
-                        </div>
-                        <div class="gift-container-body">
-                            <div class="gift-ribbon-vertical"></div>
-                            <div class="gift-ribbon-horizontal"></div>
-                        </div>
-                    </div>
-                    <p class="gift-tap-hint" id="gift-tap-hint">Ketuk kotak kado untuk membukanya! ✨</p>
-                </div>
-
-                <!-- Revealed Gift Voucher / Secret Message Modal or Card -->
-                <div id="gift-revealed-card" class="gift-revealed-card hidden" aria-live="polite">
-                    <div class="gift-card-inner">
-                        <div class="voucher-stamp">GOLDEN TICKET 🎟️</div>
-                        <h3 class="gift-card-title">Voucher Spesial Ulang Tahun Ke-23</h3>
-                        <div class="gift-card-content">
-                            <p class="gift-highlight">"1 Hari Bebas Mengajukan Permintaan Apapun!"</p>
-                            <p class="gift-detail">
-                                Mau jalan-jalan ke tempat impianmu, makan es krim sebanyak yang kamu mau, nonton film favoritmu, atau sekadar berdua menghabiskan waktu tanpa diganggu siapapun — sebutkan saja, dan aku siap mewujudkannya untukmu. ❤️
-                            </p>
-                            <span class="gift-expiry">Berlaku selamanya • Ditandatangani dengan segenap cinta</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==============================================
-             SECTION 11: FINAL LOVE LETTER & CHAPTER 23
-        ============================================== -->
-        <section id="final" class="section final-section" aria-label="Surat Penutup">
-            <div class="container">
-                <div class="final-card">
-                    <div class="final-card-header">
-                        <span class="final-feather-icon">🪶</span>
-                        <h2 class="final-title">Kalau kamu sudah sampai di sini...</h2>
-                    </div>
-
-                    <div class="final-content" id="final-letter-content">
-                        <p>berarti kamu sudah menyelesaikan seluruh perjalanan kecil yang aku buat dengan segenap hatiku untukmu.</p>
-                        <p>Aku cuma ingin kamu tahu...</p>
-                        <p>Di antara miliaran manusia dan begitu banyak takdir yang bergulir di dunia ini, aku sangat bersyukur salah satu takdir terindahku adalah dipertemukan denganmu.</p>
-                        <p>Semoga kamu selalu bahagia. Semoga senyum manismu tidak pernah pudar, dan semoga kamu selalu dikelilingi oleh kebaikan di manapun kamu berada.</p>
-                        <p>Dan kalau suatu hari nanti kamu membuka website ini lagi di masa depan, aku harap kamu tersenyum hangat dan mengingat betapa besarnya kamu disayangi hari ini.</p>
-                        
-                        <div class="final-closing">
-                            <p class="closing-salute">Happy Birthday, <span id="final-recipient-name">[PANGGILAN PACAR]</span>.</p>
-                            <p class="closing-lead">Selamat datang di lembaran barumu.</p>
-                            <h3 class="chapter-highlight">Chapter 23 Begins...</h3>
-                            <p class="final-date">06 • 10 • 2026</p>
-                            <p class="final-sign">— <span id="final-sender-name">[NAMA SAYA]</span> ❤️</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ==============================================
-         FOOTER & EASTER EGG
-    ============================================== -->
-    <footer class="site-footer">
-        <div class="container footer-content">
-            <p class="footer-made-with">
-                Dibuat dengan segenap cinta untuk ulang tahun ke-23 
-                <button id="easter-egg-btn" class="easter-heart-btn" aria-label="Secret Easter Egg" title="Ada rahasia di sini...">❤️</button>
-            </p>
-            <p class="footer-copyright">
-                © 2026 • Dedicated to <span id="footer-partner-name">[NAMA PACAR]</span>
-            </p>
+        <div class="candle-success hidden" id="candle-success">
+            <div class="success-burst">✨ 🌸 ✨</div>
+            <h3 class="success-title">Selamat Ulang Tahun! 🎉</h3>
+            <p class="success-sub">Semoga keinginanmu menjadi kenyataan.</p>
+            <a href="#chapter6" class="btn-next">Buka Surat Untukmu ❤️</a>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- ==============================================
-         MODAL: LIGHTBOX GALLERY
-    ============================================== -->
-    <div id="lightbox-modal" class="lightbox-overlay hidden" role="dialog" aria-modal="true" aria-label="Pratinjau Foto">
-        <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
-        <div class="lightbox-dialog">
-            <button id="lightbox-close" class="lightbox-close-btn" aria-label="Tutup Pratinjau">✕</button>
-            <div class="lightbox-media-wrapper">
-                <img id="lightbox-img" src="" alt="Pratinjau Foto Kenangan" class="lightbox-img">
-            </div>
-            <div class="lightbox-details">
-                <span id="lightbox-date" class="lightbox-date"></span>
-                <h4 id="lightbox-title" class="lightbox-title"></h4>
-                <p id="lightbox-caption" class="lightbox-caption"></p>
+<!-- ============================================================
+     BABAK 6 — GOLDEN ENVELOPE & FINAL LETTER
+     ============================================================ -->
+<section id="chapter6" class="chapter letter-chapter hidden-chapter">
+    <div class="letter-flowers" aria-hidden="true">
+        <svg class="letter-flower lf1" viewBox="0 0 60 60"><circle cx="30" cy="30" r="6" fill="#D4AF37"/><ellipse cx="30" cy="15" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="30" cy="45" rx="6" ry="10" fill="#F8D7DA" opacity=".85"/><ellipse cx="15" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/><ellipse cx="45" cy="30" rx="10" ry="6" fill="#F8D7DA" opacity=".85"/></svg>
+        <svg class="letter-flower lf2" viewBox="0 0 60 60"><circle cx="30" cy="30" r="6" fill="#D4AF37"/><ellipse cx="30" cy="15" rx="6" ry="10" fill="#FBDCE4" opacity=".85"/><ellipse cx="30" cy="45" rx="6" ry="10" fill="#FBDCE4" opacity=".85"/><ellipse cx="15" cy="30" rx="10" ry="6" fill="#FBDCE4" opacity=".85"/><ellipse cx="45" cy="30" rx="10" ry="6" fill="#FBDCE4" opacity=".85"/></svg>
+    </div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelope-container">
+        <div class="envelope-box" id="envelope-box" role="button" tabindex="0" aria-label="Ketuk untuk membuka surat">
+            <div class="env-flap" id="env-flap"></div>
+            <div class="env-body">
+                <div class="env-seal">
+                    <svg viewBox="0 0 50 50" class="seal-flower"><circle cx="25" cy="25" r="7" fill="#D4AF37"/><ellipse cx="25" cy="10" rx="6" ry="11" fill="#F8D7DA"/><ellipse cx="25" cy="40" rx="6" ry="11" fill="#F8D7DA"/><ellipse cx="10" cy="25" rx="11" ry="6" fill="#F8D7DA"/><ellipse cx="40" cy="25" rx="11" ry="6" fill="#F8D7DA"/></svg>
+                </div>
+                <p class="env-label">Ketuk untuk membuka 💌</p>
             </div>
         </div>
     </div>
 
-    <!-- ==============================================
-         MODAL: EASTER EGG SECRET MESSAGE
-    ============================================== -->
-    <div id="secret-modal" class="secret-overlay hidden" role="dialog" aria-modal="true" aria-label="Pesan Rahasia">
-        <div class="secret-backdrop" id="secret-backdrop"></div>
-        <div class="secret-dialog">
-            <div class="secret-icon-burst">💖</div>
-            <h3 class="secret-title">Secret Message Unlocked!</h3>
-            <div class="secret-body">
-                <p class="secret-quote">"Psst... Aku sayang kamu jauh lebih banyak dan lebih dalam dari semua kata yang mampu ditulis di website ini."</p>
-                <p class="secret-sub">Terima kasih sudah selalu menjadi bahagiaku. ❤️</p>
-            </div>
-            <button id="secret-close-btn" class="btn-romantic-primary">
-                <span>Tutup Pesan Rahasia</span> 🌸
-            </button>
+    <!-- Letter (revealed after envelope opens) -->
+    <div class="letter-sheet hidden" id="letter-sheet">
+        <div class="letter-inner" id="letter-inner">
+            <!-- Injected via JS -->
         </div>
     </div>
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
+    <!-- Final Closing -->
+    <div class="final-closing hidden" id="final-closing">
+        <div class="final-chapter-text">
+            <span class="final-chapter-label">Chapter 23 Begins...</span>
+            <span class="final-date">06 · 10 · 2026</span>
+        </div>
+        <div class="final-flower-row" aria-hidden="true">
+            <span>🌸</span><span>🌺</span><span>🌷</span><span>🌸</span><span>🌺</span>
+        </div>
+    </div>
+</section>
+
+<!-- Floating Music Player -->
+<div id="music-player" class="music-player hidden" aria-label="Pemutar Musik">
+    <button id="music-toggle" class="music-toggle-btn" aria-label="Putar/Hentikan Musik">
+        <div class="disc" id="disc">🎵</div>
+    </button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
